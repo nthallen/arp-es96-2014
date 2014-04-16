@@ -1,0 +1,13 @@
+# Startup script for ES96
+  Launch memo memo -o $Experiment.log
+  Launch TM/DCo TMbfr
+
+  memo=/dev/huarp/$Experiment/memo
+  echo "Running script interact" >$memo
+
+# Launch dccc dccc -f $TMBINDIR/dccc.dccc
+  Launch DG/cmd ES96col
+  Launch cmd/server ES96srvr
+  Launch - lgr -N `mlf_find LOG`
+  Launch - tmdf
+# Launch - ES96algo -v

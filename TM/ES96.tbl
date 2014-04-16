@@ -1,0 +1,7 @@
+{
+  Freemem: (freemem,7) MB;
+  CPU: (CPU_Pct,3) "%";
+  Disk: (Disk,5) "%";
+  Time: (flttime,9);
+  MFCtr: (MFCtr,5);
+}
