@@ -1,0 +1,2 @@
+SW_Variable: SWStat SW Status
+  SWS_SHUTDOWN      255 Shutdown: break;

@@ -1,0 +1,11 @@
+%{
+  #include "subbus.h"
+  #define MREAD(r,v) mread_subbus(r,(unsigned short *) &v)
+  
+  subbus_mread_req *adc_req;
+
+%}
+
+TM INITFUNC adc_req = pack_mread_requests(0xE80,0xE82,0);
+
+collect IDet1 { MREAD(adc_req,IDet1); }
