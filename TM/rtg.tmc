@@ -1,1 +1,2 @@
 ci_sendfcmd(2, "PhRTG Datum CPU_Pct %lu %s\n", itime(), text(CPU_Pct));
+ci_sendfcmd(2, "PhRTG Datum IDet1 %.2lf %s\n", dtime(), text(IDet1));

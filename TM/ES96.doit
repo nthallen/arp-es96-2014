@@ -1,5 +1,4 @@
-#display ES96disp -C $FlightNode
-display ES96disp 
+display ES96disp -C $FlightNode
 client ES96clt
 memo
 batchfile interact
