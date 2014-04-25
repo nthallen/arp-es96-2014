@@ -23,6 +23,7 @@ ES96col : -lsubbus
 ES96srvr :
 ES96disp : /usr/local/share/huarp/flttime.tmc ES96.tbl rtg.tmc \
 /usr/local/share/oui/cic.oui
+ES96algo : ES96.tma
 
 doit : ES96.doit
 

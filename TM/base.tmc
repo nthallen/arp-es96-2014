@@ -1,6 +1,38 @@
 TM typedef unsigned char UCHAR { text "%3u"; }
 TM typedef unsigned short UINT { text "%5u"; }
 TM typedef double VOLTS;
+TM typedef double CELCIUS;
+TM typedef double TORR;
+TM typedef double SLM;
+
+TM typedef signed short AI16 {
+  text "%7.4lf";
+  convert VOLTS;
+  collect x = sbrwa(x.address);
+}
+  Calibration (AI16,VOLTS) {0,0,32768,4.096}
+
+TM typedef AI16 AI_T30K
+  { text "%6.2lf"; convert CELCIUS; } 
+  /* Calibration in T30K75KU.tmc */
+
+TM typedef AI16 AI_T1M1M
+  { text "%6.2lf"; convert CELCIUS; }
+  /* Calibration in T1M1M.tmc */
+
+TM typedef AI16 P500Torr
+  {text "%7.3lf"; convert TORR;}
+
+Calibration (P500Torr, TORR) {
+  0, 0,
+  32000, 500
+}
+
+TM typedef AI16 AI16_5V { text "%7.4lf"; convert VOLTS; }
+  Calibration (AI16_5V, VOLTS) { 0, 0, 32768, 5.3333 }
+
+TM typedef AI16_5V AI_10SLM { text "%6.3lf"; convert SLM; }
+ Calibration (AI_10SLM, SLM) { 6144, 0, 30720, 10 } 
 
 TM 4 Hz UINT MFCtr, Synch;
 
@@ -20,4 +52,28 @@ calibration(LTC2440_t, VOLTS) {
 
 TM 4 Hz LTC2440_t IDet1;  
 
-
+TM 4 Hz AI_T30K T_A_1;
+TM 4 Hz AI_T30K T_A_2;
+TM 4 Hz AI_T30K T_A_3;
+TM 4 Hz AI_T30K T_A_4;
+TM 4 Hz AI_T30K T_LED_A;
+TM 4 Hz AI_T30K T_Dtct_Intl_A;
+TM 4 Hz AI_T30K T_Dtct_A;
+TM 1 Hz AI_T30K T_Inlet;
+TM 1 Hz AI_T30K T_Scb;
+TM 1 Hz AI_T30K T_Vlv_Unscb_A;
+TM 1 Hz AI_T30K T_Scb_Vlv_A;
+TM 1 Hz AI_T30K T_Out_Vlv_A;
+TM 1 Hz AI_T30K T_Pmp_1_Motor;
+TM 1 Hz AI_T30K T_Pmp_1_Head;
+TM 1 Hz AI_T30K T_Rove_1;
+TM 1 Hz AI_T30K T_Rove_2;
+TM 1 Hz AI_T30K T_Rove_3;
+TM 1 Hz AI_T30K T_Rove_4;
+TM 4 Hz P500Torr P_A;
+TM 1 Hz AI_T30K T_LED_Hou_A;
+TM 1 Hz AI_T30K T_Dtct_Hou_A;
+TM 1 Hz AI_T30K T_Z1_Mir_A;
+TM 1 Hz AI_T30K T_Z2_Mir_A;
+TM 1 Hz AI_T30K T_Cell_In_A;
+TM 1 Hz AI_10SLM Flw_Out_A;

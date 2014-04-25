@@ -19,6 +19,11 @@ ES96dispnc.cc
 ES96dispncoui.c
 ES96dispncoui.o
 ES96dispnc.o
+ES96algoa.tmc
+ES96algo.cc
+ES96algooui.c
+ES96algooui.o
+ES96algo.o
 doit.dep
 ES96clt.o
 ES96cltoui.c
@@ -31,6 +36,7 @@ ES96col
 ES96srvr
 ES96disp
 ES96dispnc
+ES96algo
 doit
 ES96clt
 ES96cltnc

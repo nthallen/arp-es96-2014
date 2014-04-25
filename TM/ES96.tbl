@@ -1,4 +1,5 @@
-{
+Status {
+  -;
   IDet1: (IDet1,10) ;
   Freemem: (freemem,7) MB;
   CPU: (CPU_Pct,3) "%";
@@ -6,4 +7,22 @@
   SWStat: (SWStat,3); 
   Time: (flttime,9);
   MFCtr: (MFCtr,5);
+}
+
+TempCont {
+  -;
+  Z1: (Z1_HC_A_S,3) (Z1_H_St,7) (T_Z1_Mir_A,7);
+  Z2: (Z2_HC_A_S,3) (Z2_H_St,7) (T_Z2_Mir_A,7);
+  Z5: (Z5_HC_In_S,3) (Z5_H_St,7) (T_Inlet,7);
+}
+CellT {
+  -;
+  Inlet: (T_Cell_In_A,7);
+  "1:" (T_A_1,7);
+  "2:" (T_A_2,7);
+  "3:" (T_A_3,7);
+  "4:" (T_A_4,7); 
+}
+{
+  [TempCont]; [CellT]; [Status];
 }
