@@ -50,30 +50,53 @@ calibration(LTC2440_t, VOLTS) {
   0xFFFFFFFF, 10
 }
 
-TM 4 Hz LTC2440_t IDet1;  
 
-TM 4 Hz AI_T30K T_A_1;
-TM 4 Hz AI_T30K T_A_2;
-TM 4 Hz AI_T30K T_A_3;
-TM 4 Hz AI_T30K T_A_4;
-TM 4 Hz AI_T30K T_LED_A;
-TM 4 Hz AI_T30K T_Dtct_Intl_A;
-TM 4 Hz AI_T30K T_Dtct_A;
-TM 1 Hz AI_T30K T_Inlet;
-TM 1 Hz AI_T30K T_Scb;
-TM 1 Hz AI_T30K T_Vlv_Unscb_A;
-TM 1 Hz AI_T30K T_Scb_Vlv_A;
-TM 1 Hz AI_T30K T_Out_Vlv_A;
-TM 1 Hz AI_T30K T_Pmp_1_Motor;
-TM 1 Hz AI_T30K T_Pmp_1_Head;
-TM 1 Hz AI_T30K T_Rove_1;
-TM 1 Hz AI_T30K T_Rove_2;
-TM 1 Hz AI_T30K T_Rove_3;
-TM 1 Hz AI_T30K T_Rove_4;
-TM 4 Hz P500Torr P_A;
-TM 1 Hz AI_T30K T_LED_Hou_A;
-TM 1 Hz AI_T30K T_Dtct_Hou_A;
-TM 1 Hz AI_T30K T_Z1_Mir_A;
-TM 1 Hz AI_T30K T_Z2_Mir_A;
-TM 1 Hz AI_T30K T_Cell_In_A;
-TM 1 Hz AI_10SLM Flw_Out_A;
+TM typedef unsigned short AO 
+  { text "%6.4lf"; convert VOLTS; collect x = sbrwa(x.address); }
+  Calibration ( AO, VOLTS ) {
+    0, 0,
+    65536, 10
+  }
+
+TM typedef unsigned char DStat {
+  text "%3d"; Collect x = sbrba(x.address);
+}
+
+TM 4 Hz LTC2440_t Dtct_A;  
+TM 4 Hz LTC2440_t Dtct_Src_A;
+
+Group ADC (Dtct_A, Dtct_Src_A) { 
+  MREAD(adc_req,&Dtct_A,&Dtct_Src_A); }
+
+TM 4 Hz AI_T1M1M T_A_1; Address T_A_1 0xC24;
+TM 4 Hz AI_T1M1M T_A_2; Address T_A_2 0xC44;
+TM 4 Hz AI_T1M1M T_A_3; Address T_A_3 0xC64;
+TM 4 Hz AI_T1M1M T_A_4; Address T_A_4 0xC84;
+TM 4 Hz AI_T30K T_LED_A; Address T_LED_A 0xC42;
+TM 4 Hz AI_T30K T_Dtct_Src_A; Address T_Dtct_Src_A 0xC60; 
+TM 4 Hz AI_T30K T_Dtct_A; Address T_Dtct_A 0xCA6; 
+TM 1 Hz AI16 CT_Inlet; Address CT_Inlet 0xC80;
+TM 1 Hz AI_T30K T_Scb; Address T_Scb 0xC20;
+TM 1 Hz AI_T30K T_Vlv_UnScb_A; Address T_Vlv_UnScb_A 0xCE6;
+TM 1 Hz AI_T30K T_Scb_Vlv_A; Address T_Scb_Vlv_A 0xC08;
+TM 1 Hz AI_T30K T_Pmp_1_Motor; Address T_Pmp_1_Motor 0xC28;
+TM 1 Hz AI_T30K T_Pmp_1_Head; Address T_Pmp_1_Head 0xC48;
+TM 1 Hz AI_T30K T_Rove_1; Address T_Rove_1 0xCC0;
+TM 1 Hz AI_T30K T_Rove_2; Address T_Rove_2 0xCE0;
+TM 1 Hz AI_T30K T_Rove_3; Address T_Rove_3 0xC02;
+TM 1 Hz AI_T30K T_Rove_4; Address T_Rove_4 0xCC2;
+TM 4 Hz P500Torr P_A; Address P_A 0xCE4;
+TM 1 Hz AI_T30K T_LED_Hou_A; Address T_LED_Hou_A 0xC62;
+TM 1 Hz AI_T30K T_Dtct_Hou_A; Address T_Dtct_Hou_A 0xC82;
+TM 1 Hz AI16 CT_Z1_Mir_A; Address CT_Z1_Mir_A 0xC40;
+TM 1 Hz AI16 CT_Z2_Mir_A; Address CT_Z2_Mir_A 0xC04;
+TM 4 Hz AI_T1M1M T_Cell_In_A; Address T_Cell_In_A 0xC22;
+TM 1 Hz AI_10SLM Flw_Out_A; Address Flw_Out_A 0xC66;
+TM 4 Hz AI_T1M1M T_Cell_Out_A;Address T_Cell_Out_A 0xCA4;
+
+
+TM 1 Hz AO Z1_H_St; Address Z1_H_St 0x406;
+TM 1 Hz AO Z2_H_St; Address Z2_H_St 0x40A;
+TM 1 Hz AO Z5_H_St; Address Z5_H_St 0x408;
+
+TM 4 Hz DStat DS813; Address DS813 0x813;

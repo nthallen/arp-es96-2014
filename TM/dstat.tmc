@@ -1,0 +1,30 @@
+%{
+  static const char *on_off_status_text[] = {
+    "Off",
+    " On"
+  };
+  static const char *open_closed_status_text[] = {
+    "Closed",
+    "  Open"
+  };
+%}
+
+TM typedef unsigned char On_Off_t { text "%3d" on_off_status_text[]; }
+TM typedef unsigned char Open_Closed_t { text "%6d" open_closed_status_text[]; }
+
+On_Off_t LED_A_On_Off; Invalidate LED_A_On_Off;
+  { LED_A_On_Off = (DS813>>0x0)&1; Validate LED_A_On_Off; }
+Open_Closed_t Vlv_UnScb_A_Open_Close_S; Invalidate Vlv_UnScb_A_Open_Close_S;
+  { Vlv_UnScb_A_Open_Close_S = (DS813>>0x1)&1; Validate Vlv_UnScb_A_Open_Close_S; }
+Open_Closed_t Vlv_Scb_A_Open_Close_S; Invalidate Vlv_Scb_A_Open_Close_S;
+  { Vlv_Scb_A_Open_Close_S = (DS813>>0x2)&1; Validate Vlv_Scb_A_Open_Close_S; }
+On_Off_t Scrub_FH_A_On_Off_S; Invalidate Scrub_FH_A_On_Off_S;
+  { Scrub_FH_A_On_Off_S = (DS813>>0x3)&1; Validate Scrub_FH_A_On_Off_S; }
+On_Off_t Z1_HC_A_S; Invalidate Z1_HC_A_S;
+  { Z1_HC_A_S = (DS813>>0x4)&1; Validate Z1_HC_A_S; }
+On_Off_t Z2_HC_A_S; Invalidate Z2_HC_A_S;
+  { Z2_HC_A_S = (DS813>>0x5)&1; Validate Z2_HC_A_S; }
+On_Off_t Z5_HC_In_S; Invalidate Z5_HC_In_S;
+  { Z5_HC_In_S = (DS813>>0x6)&1; Validate Z5_HC_In_S; }
+On_Off_t Pump_On_Off_S; Invalidate Pump_On_Off_S;
+  { Pump_On_Off_S = (DS813>>0x7)&1; Validate Pump_On_Off_S; }

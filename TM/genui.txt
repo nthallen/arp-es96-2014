@@ -1,0 +1,47 @@
+HEADER ES96 Ozone
+MNEMONIC ES96
+HOMEDIR /home/es96
+ROWS 18
+  4 T_Cell_In_A Ozone:Cell Temp In 
+  4 T_A_1 Ozone:Cell Temp 1
+  4 T_A_2 Ozone:Cell Temp 2
+  4 T_A_3 Ozone:Cell Temp 3
+  4 T_A_4 Ozone:Cell Temp 4
+  4 T_Cell_Out_A Ozone:Cell Temp Out 
+  4 T_LED_A Ozone:LED LED_Temp
+  4 T_Dtct_Src_A Ozone:LED Dtct_Temp
+  1 T_LED_Hou_A Ozone:LED Hos_Temp
+  4 Dtct_Src_A Ozone:LED Raw_I
+  4 LED_A_On_Off:DS813:0 Ozone:LED Status
+  4 Dtct_A Ozone:Detector Raw_I
+  4 T_Dtct_A Ozone:Detector Dtct_Temp
+  1 T_Dtct_Hou_A Ozone:Detector Hos_Temp
+  1 CT_Z1_Mir_A Ozone:Temp_Control Zone_1
+  1 Z1_H_St Ozone:Temp_Control Zone_1
+  1 CT_Z2_Mir_A Ozone:Temp_Control Zone_2
+  1 Z2_H_St Ozone:Temp_Control Zone_2
+  1 CT_Inlet Ozone:Temp_Control Zone_5
+  1 Z5_H_St Ozone:Temp_Control Zone_5
+  4 Z1_HC_A_On_Off:DS813:4 Ozone:Temp_Control Status
+  4 Z2_HC_A_On_Off:DS813:5 Ozone:Temp_Control Status
+  4 Z5_HC_In_On_Off:DS813:6 Ozone:Temp_Control Status
+  1 T_Vlv_UnScb_A Ozone:Vlv_Srb Vlv_Temp  
+  1 T_Scb_Vlv_A Ozone:Vlv_Srb Vlv_Temp
+  1 T_Scb Ozone:Vlv_Srb Srb_Temp
+  4 Vlv_UnScb_A_Open_Close:DS813:1 Ozone:Vlv_Srb Status
+  4 Vlv_Scb_A_Open_Close:DS813:2 Ozone:Vlv_Srb Status
+  4 Scrub_FH_A_On_Off:DS813:3 Ozone:Vlv_Srb Status
+  4 P_A Ozone:Flow Pressure
+  1 Flw_Out_A Ozone:Flow Rate
+  4 Pump_On_Off:DS813:7 Ozone:Flow Status
+  1 T_Pmp_1_Motor Ozone:Flow Temp Motor
+  1 T_Pmp_1_Head Ozone:Flow Temp Head
+  1 T_Rove_1 Ozone:Rove Temp 1 
+  1 T_Rove_2 Ozone:Rove Temp 2 
+  1 T_Rove_3 Ozone:Rove Temp 3 
+  1 T_Rove_4 Ozone:Rove Temp 4 
+  1 freemem Ozone:PDACS Memory
+  1 CPU_Pct Ozone:PDACS CPU
+  1 Disk Ozone:PDACS CPU
+  1 SWStat Ozone:PDACS SWStat
+  
