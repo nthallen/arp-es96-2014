@@ -1,9 +1,9 @@
-# Makefile Generated Fri May 02 16:12:50 EDT 2014
+# Makefile Generated Sat May 03 12:24:22 EDT 2014
 MNC=ES96
 SPECFILE=ES96.spec
-SRC=base.tmc SWData.tmc SWData.h adc_col.tmc SWData_col.tmc dccc.cmd
-SRC+=ao.cmd SWData.cmd dstat.tmc T30K75KU.tmc T1M1M.tmc ES96.tbl
-SRC+=rtg.tmc ES96.tma ES96eng.cdf ES96.doit
+SRC=base.tmc SWData.tmc SWData.h AI_col.tmc adc_col.tmc
+SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc T30K75KU.tmc
+SRC+=T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96eng.cdf ES96.doit
 TOOL=ES96.spec Makefile
 SCRIPT=interact dccc.dccc
 OBJ=ES96col.cc ES96.pcm tm.dac ES96coloui.c ES96coloui.o ES96col.o
@@ -30,7 +30,7 @@ CMDBASE+=/usr/local/share/huarp/getcon.cmd
 CMDBASE+=/usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
 COLBASE=/usr/local/share/huarp/freemem_col.tmc
 COLBASE+=/usr/local/share/huarp/cpu_usage_col.tmc
-COLBASE+=/usr/local/share/huarp/tmdf_col.tmc adc_col.tmc
+COLBASE+=/usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc
 COLBASE+=SWData_col.tmc
 SWSBASE=ES96.sws
 QCLIBASE=
@@ -91,8 +91,8 @@ ES96clt : ES96clt.o ES96cltoui.o
 ES96cltnc : ES96cltnc.o ES96cltncoui.o
 	$(LINK.normCXX) ES96cltnc.o ES96cltncoui.o -ltmnc -lncurses -ltmpp -ltm -lnort
 	$(OUIUSE) ES96cltncoui.c
-ES96col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc adc_col.tmc SWData_col.tmc
-	$(TMC.col) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc adc_col.tmc SWData_col.tmc
+ES96col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc SWData_col.tmc
+	$(TMC.col) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc SWData_col.tmc
 ES96coloui.c : $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 ES96coloui.o : ES96coloui.c SWData.h

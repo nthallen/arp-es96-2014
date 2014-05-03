@@ -28,6 +28,7 @@ Dtct {
   "Raw I:" (Dtct_A,10) V;
   Housing: (T_Dtct_Hou_A,7) C;
   Detector: (T_Dtct_A,7) C;
+  ADC_Stat: (ADC_Stat,4);
 }
 LED {
   HBox { +-; Title: "LED"; -+ };
@@ -43,7 +44,8 @@ Flow {
   Flow: (Flw_Out_A,6) SLM;
   Pump: (Pump_On_Off_S,3);
   Motor: (T_Pmp_1_Motor,7) C;
-  Head: (T_Pmp_1_Head,7) C;
+  Head1: (T_Pmp_1_Head,7) C;
+  Head2: (T_Pmp_2_Head,7) C;
 }
 Valves {
   HBox { +-; Title: "Valves & Scrubber"; -+ };

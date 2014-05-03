@@ -36,6 +36,7 @@ ROWS 18
   4 Pump_On_Off:DS813:7 Ozone:Flow Status
   1 T_Pmp_1_Motor Ozone:Flow Temp Motor
   1 T_Pmp_1_Head Ozone:Flow Temp Head
+  1 T_Pmp_2_Head Ozone:Flow Temp Head
   1 T_Rove_1 Ozone:Rove Temp 1 
   1 T_Rove_2 Ozone:Rove Temp 2 
   1 T_Rove_3 Ozone:Rove Temp 3 

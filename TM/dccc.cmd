@@ -12,7 +12,7 @@
   : Z1_HC_A_On_Off { $0 = 4; }
   : Z2_HC_A_On_Off { $0 = 5; }
   : Z5_HC_A_On_Off { $0 = 6; }
-  : Pump_On_Off [ $0 = 7; }
+  : Pump_On_Off { $0 = 7; }
   ;
 
 &cmd_on_off <int>

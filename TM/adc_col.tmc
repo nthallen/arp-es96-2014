@@ -1,14 +1,17 @@
 %{
   #include "subbus.h"
-  void MREAD(subbus_mread_req* r,LTC2440_t* A, LTC2440_t* B) {
-    unsigned long buff[2];
-    mread_subbus(r,(unsigned short *) &buff);
-    *A = buff[0];
-    *B = buff[1];
+  void MREAD(subbus_mread_req* r, ADC_Stat_t *S,
+	      LTC2440_t* A, LTC2440_t* B) {
+    unsigned short buff[5];
+    mread_subbus(r, buff);
+
+    *S = buff[0];
+    *A = buff[1] + (((unsigned long)buff[2]) << 16);
+    *B = buff[3] + (((unsigned long)buff[4]) << 16);
   }
 
   subbus_mread_req *adc_req;
 
 %}
 
-TM INITFUNC adc_req = pack_mread_requests(0xE80,0xE82,0xE84,0xE86,0);
+TM INITFUNC adc_req = pack_mread_requests(0xE80,0xE82,0xE84,0xE86,0xE88,0);

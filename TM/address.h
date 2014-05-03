@@ -14,8 +14,9 @@
 #define T_Rove_3_Address 0xC02
 #define T_Rove_2_Address 0xCE0
 #define T_Rove_1_Address 0xCC0
-#define T_Pmp_1_Head_Address 0xC48
-#define T_Pmp_1_Motor_Address 0xC28
+#define T_Pmp_2_Head_Address 0xCE2
+#define T_Pmp_1_Head_Address 0xCA0
+#define T_Pmp_1_Motor_Address 0xCA2
 #define T_Scb_Vlv_A_Address 0xC08
 #define T_Vlv_UnScb_A_Address 0xCE6
 #define T_Scb_Address 0xC20

@@ -62,11 +62,16 @@ TM typedef unsigned char DStat {
   text "%3d"; Collect x = sbrba(x.address);
 }
 
+TM typedef unsigned short ADC_Stat_t {
+  text "%04x";
+}
+
+TM 4 Hz ADC_Stat_t ADC_Stat; 
 TM 4 Hz LTC2440_t Dtct_A;  
 TM 4 Hz LTC2440_t Dtct_Src_A;
 
-Group ADC (Dtct_A, Dtct_Src_A) { 
-  MREAD(adc_req,&Dtct_A,&Dtct_Src_A); }
+Group ADC (ADC_Stat, Dtct_A, Dtct_Src_A) { 
+  MREAD(adc_req, &ADC_Stat, &Dtct_A, &Dtct_Src_A); }
 
 TM 4 Hz AI_T1M1M T_A_1; Address T_A_1 0xC24;
 TM 4 Hz AI_T1M1M T_A_2; Address T_A_2 0xC44;
@@ -79,8 +84,9 @@ TM 1 Hz AI16 CT_Inlet; Address CT_Inlet 0xC80;
 TM 1 Hz AI_T30K T_Scb; Address T_Scb 0xC20;
 TM 1 Hz AI_T30K T_Vlv_UnScb_A; Address T_Vlv_UnScb_A 0xCE6;
 TM 1 Hz AI_T30K T_Scb_Vlv_A; Address T_Scb_Vlv_A 0xC08;
-TM 1 Hz AI_T30K T_Pmp_1_Motor; Address T_Pmp_1_Motor 0xC28;
-TM 1 Hz AI_T30K T_Pmp_1_Head; Address T_Pmp_1_Head 0xC48;
+TM 1 Hz AI_T30K T_Pmp_1_Motor; Address T_Pmp_1_Motor 0xCA2;
+TM 1 Hz AI_T30K T_Pmp_1_Head; Address T_Pmp_1_Head 0xCA0;
+TM 1 Hz AI_T30K T_Pmp_2_Head; Address T_Pmp_2_Head 0xCE2;
 TM 1 Hz AI_T30K T_Rove_1; Address T_Rove_1 0xCC0;
 TM 1 Hz AI_T30K T_Rove_2; Address T_Rove_2 0xCE0;
 TM 1 Hz AI_T30K T_Rove_3; Address T_Rove_3 0xC02;

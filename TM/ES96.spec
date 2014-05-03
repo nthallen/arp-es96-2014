@@ -13,6 +13,7 @@ cmdbase = ao.cmd
 colbase = /usr/local/share/huarp/freemem_col.tmc
 colbase = /usr/local/share/huarp/cpu_usage_col.tmc
 colbase = /usr/local/share/huarp/tmdf_col.tmc
+colbase = AI_col.tmc
 colbase = adc_col.tmc
 
 swsbase = ES96.sws
