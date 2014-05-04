@@ -25,14 +25,15 @@ CellT {
 }
 Dtct {
   HBox { +-; Title: "Detector"; -+ };
-  "Raw I:" (Dtct_A,10) V;
+  "Raw I:" (Dtct_A_c,10) V;
   Housing: (T_Dtct_Hou_A,7) C;
   Detector: (T_Dtct_A,7) C;
-  ADC_Stat: (ADC_Stat,4);
+  adc_n_avg: (adc_n_avg,3);
+  adc_err:  (adc_err,3);
 }
 LED {
   HBox { +-; Title: "LED"; -+ };
-  "Raw I:" (Dtct_Src_A,10) V;
+  "Raw I:" (Dtct_Src_A_c,10) V;
   Status: (LED_A_On_Off,3);
   Housing: (T_LED_Hou_A,7) C;
   Dtct: (T_Dtct_Src_A,7) C;

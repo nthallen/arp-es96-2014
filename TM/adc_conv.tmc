@@ -1,0 +1,13 @@
+UCHAR adc_n_avg; invalidate adc_n_avg;
+UCHAR adc_err; invalidate adc_err;
+LTC2440_t Dtct_A_c; invalidate Dtct_A_c;
+LTC2440_t Dtct_Src_A_c; invalidate Dtct_Src_A_c;
+{ adc_n_avg = ADC_Stat & 0xFF;
+  adc_err = (ADC_Stat>>8) & 3;
+  Dtct_A_c = adc_n_avg ? (Dtct_A * 2 / adc_n_avg) : 0;
+  Dtct_Src_A_c = adc_n_avg ? (Dtct_Src_A * 2 / adc_n_avg) : 0;
+  validate adc_n_avg;
+  validate adc_err;
+  validate Dtct_A_c;
+  validate Dtct_Src_A_c;
+}

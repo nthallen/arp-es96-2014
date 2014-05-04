@@ -43,9 +43,9 @@ TM typedef unsigned long LTC2440_t {
  convert VOLTS; } 
 
 calibration(LTC2440_t, VOLTS) {
-  0, -5.2,
+  0, -4.096,
   0x20000000, 0,
-  0x3FFFFFFF, 5.2,
+  0x3FFFFFFF, 4.096,
   0x40000000, 10,
   0xFFFFFFFF, 10
 }

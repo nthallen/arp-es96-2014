@@ -26,8 +26,8 @@ csv ES96eng_1 24
 csv ES96eng_4 14
   0 TES96eng_4 %.3lf
   1 DS813 
-  2 Dtct_A 
-  3 Dtct_Src_A 
+  2 Dtct_A_c 
+  3 Dtct_Src_A_c 
   4 P_A 
   5 T_A_1 
   6 T_A_2 

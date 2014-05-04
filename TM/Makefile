@@ -1,9 +1,10 @@
-# Makefile Generated Sat May 03 12:24:22 EDT 2014
+# Makefile Generated Sun May 04 10:55:22 EDT 2014
 MNC=ES96
 SPECFILE=ES96.spec
 SRC=base.tmc SWData.tmc SWData.h AI_col.tmc adc_col.tmc
-SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc T30K75KU.tmc
-SRC+=T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96eng.cdf ES96.doit
+SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc adc_conv.tmc
+SRC+=T30K75KU.tmc T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96eng.cdf
+SRC+=ES96.doit
 TOOL=ES96.spec Makefile
 SCRIPT=interact dccc.dccc
 OBJ=ES96col.cc ES96.pcm tm.dac ES96coloui.c ES96coloui.o ES96col.o
@@ -105,15 +106,15 @@ ES96srvroui.c : $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(O
 	$(OUI) $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 ES96srvroui.o : ES96srvroui.c
 ES96tbl.tmc : ES96.tbl
-ES96disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
+ES96disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
 ES96dispoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96dispoui.o : ES96dispoui.c SWData.h
 ES96disp.o : ES96disp.cc SWData.h
 ES96tblnc.tmc : ES96.tbl
-ES96dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
+ES96dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
 ES96dispncoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96dispncoui.o : ES96dispncoui.c SWData.h
@@ -131,8 +132,8 @@ ES96engextcdf.oui : ES96eng.cdf
 	$(EDF2OUI) ES96eng.cdf
 ES96engext.tmc : ES96eng.cdf
 	$(EDF2EXT) ES96eng.cdf
-ES96engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc T1M1M.tmc ES96engext.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc T1M1M.tmc ES96engext.tmc
+ES96engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc adc_conv.tmc T1M1M.tmc ES96engext.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc adc_conv.tmc T1M1M.tmc ES96engext.tmc
 ES96engextoui.c : ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96engextoui.o : ES96engextoui.c SWData.h
