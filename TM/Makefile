@@ -1,10 +1,10 @@
-# Makefile Generated Sun May 04 10:55:22 EDT 2014
+# Makefile Generated Tue May 06 10:16:46 EDT 2014
 MNC=ES96
 SPECFILE=ES96.spec
 SRC=base.tmc SWData.tmc SWData.h AI_col.tmc adc_col.tmc
 SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc adc_conv.tmc
 SRC+=T30K75KU.tmc T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96eng.cdf
-SRC+=ES96.doit
+SRC+=raw.cdf ES96.doit
 TOOL=ES96.spec Makefile
 SCRIPT=interact dccc.dccc
 OBJ=ES96col.cc ES96.pcm tm.dac ES96coloui.c ES96coloui.o ES96col.o
@@ -14,10 +14,11 @@ OBJ+=ES96tblnc.tmc ES96dispnc.cc ES96dispncoui.c ES96dispncoui.o
 OBJ+=ES96dispnc.o ES96algoa.tmc ES96algo.cc ES96algooui.c
 OBJ+=ES96algooui.o ES96algo.o ES96engextcdf.oui ES96engext.tmc
 OBJ+=ES96engext.cc ES96engextoui.c ES96engextoui.o ES96engext.o
-OBJ+=doit.dep ES96clt.o ES96cltoui.c ES96cltoui.o ES96cltnc.o
-OBJ+=ES96cltncoui.c ES96cltncoui.o
-TGT=ES96col ES96srvr ES96disp ES96dispnc ES96algo ES96engext doit
-TGT+=ES96clt ES96cltnc
+OBJ+=rawextcdf.oui rawext.tmc rawext.cc rawextoui.c rawextoui.o
+OBJ+=rawext.o doit.dep ES96clt.o ES96cltoui.c ES96cltoui.o
+OBJ+=ES96cltnc.o ES96cltncoui.c ES96cltncoui.o
+TGT=ES96col ES96srvr ES96disp ES96dispnc ES96algo ES96engext rawext
+TGT+=doit ES96clt ES96cltnc
 DISTRIB=ES96.pcm tm.dac
 IDISTRIB=Experiment.config VERSION doit
 SRCDIST=ES96.tbl ES96.tma /usr/local/share/huarp/freemem.tmc
@@ -84,6 +85,9 @@ ES96algo : ES96algo.o ES96algooui.o
 ES96engext : ES96engext.o ES96engextoui.o
 	$(LINK.normCXX) ES96engext.o ES96engextoui.o -ltmpp -ltm -lnort
 	$(OUIUSE) ES96engextoui.c
+rawext : rawext.o rawextoui.o
+	$(LINK.normCXX) rawext.o rawextoui.o -ltmpp -ltm -lnort
+	$(OUIUSE) rawextoui.c
 doit : ES96.doit
 	mkdoit3 -o doit  ES96.doit
 ES96clt : ES96clt.o ES96cltoui.o
@@ -138,6 +142,16 @@ ES96engextoui.c : ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96engextoui.o : ES96engextoui.c SWData.h
 ES96engext.o : ES96engext.cc SWData.h
+rawextcdf.oui : raw.cdf
+	$(EDF2OUI) raw.cdf
+rawext.tmc : raw.cdf
+	$(EDF2EXT) raw.cdf
+rawext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc rawext.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc rawext.tmc
+rawextoui.c : rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+	$(OUI) rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+rawextoui.o : rawextoui.c SWData.h
+rawext.o : rawext.cc SWData.h
 doit.dep : ES96.doit
 	mkdoit3 -M -o doit  ES96.doit
 -include doit.dep

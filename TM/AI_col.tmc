@@ -24,3 +24,4 @@
   }
 %}
 TM INITFUNC ai_init();
+TM INITFUNC sbwr(Flw_Out_A.address, AI_CFG_XP768);

@@ -25,7 +25,7 @@ TM typedef AI16 P500Torr
 
 Calibration (P500Torr, TORR) {
   0, 0,
-  32000, 500
+  64848, 500
 }
 
 TM typedef AI16 AI16_5V { text "%7.4lf"; convert VOLTS; }
@@ -71,7 +71,7 @@ TM 4 Hz LTC2440_t Dtct_A;
 TM 4 Hz LTC2440_t Dtct_Src_A;
 
 Group ADC (ADC_Stat, Dtct_A, Dtct_Src_A) { 
-  MREAD(adc_req, &ADC_Stat, &Dtct_A, &Dtct_Src_A); }
+  MREAD(adc_req, &ADC_Stat, &Dtct_Src_A, &Dtct_A); }
 
 TM 4 Hz AI_T1M1M T_A_1; Address T_A_1 0xC24;
 TM 4 Hz AI_T1M1M T_A_2; Address T_A_2 0xC44;

@@ -30,6 +30,12 @@ ES96engext.cc
 ES96engextoui.c
 ES96engextoui.o
 ES96engext.o
+rawextcdf.oui
+rawext.tmc
+rawext.cc
+rawextoui.c
+rawextoui.o
+rawext.o
 doit.dep
 ES96clt.o
 ES96cltoui.c
@@ -44,6 +50,7 @@ ES96disp
 ES96dispnc
 ES96algo
 ES96engext
+rawext
 doit
 ES96clt
 ES96cltnc
