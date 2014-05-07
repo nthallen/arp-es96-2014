@@ -1,17 +1,17 @@
-# Makefile Generated Tue May 06 10:16:46 EDT 2014
+# Makefile Generated Tue May 06 07:37:50 EDT 2014
 MNC=ES96
 SPECFILE=ES96.spec
 SRC=base.tmc SWData.tmc SWData.h AI_col.tmc adc_col.tmc
 SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc adc_conv.tmc
-SRC+=T30K75KU.tmc T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96eng.cdf
-SRC+=raw.cdf ES96.doit
+SRC+=T30K75KU.tmc T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96.sws
+SRC+=ES96eng.cdf raw.cdf ES96.doit
 TOOL=ES96.spec Makefile
 SCRIPT=interact dccc.dccc
 OBJ=ES96col.cc ES96.pcm tm.dac ES96coloui.c ES96coloui.o ES96col.o
 OBJ+=ES96cmd.cc ES96cmd.dat ES96srvr.o ES96srvroui.c ES96srvroui.o
 OBJ+=ES96tbl.tmc ES96disp.cc ES96dispoui.c ES96dispoui.o ES96disp.o
 OBJ+=ES96tblnc.tmc ES96dispnc.cc ES96dispncoui.c ES96dispncoui.o
-OBJ+=ES96dispnc.o ES96algoa.tmc ES96algo.cc ES96algooui.c
+OBJ+=ES96dispnc.o ES96sws.tma ES96algoa.tmc ES96algo.cc ES96algooui.c
 OBJ+=ES96algooui.o ES96algo.o ES96engextcdf.oui ES96engext.tmc
 OBJ+=ES96engext.cc ES96engextoui.c ES96engextoui.o ES96engext.o
 OBJ+=rawextcdf.oui rawext.tmc rawext.cc rawextoui.c rawextoui.o
@@ -123,9 +123,11 @@ ES96dispncoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/d
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96dispncoui.o : ES96dispncoui.c SWData.h
 ES96dispnc.o : ES96dispnc.cc SWData.h
-ES96algoa.tmc : ES96.tma ES96srvr
+ES96sws.tma : ES96.sws
+	$(COMPILE.sws) ES96.sws
+ES96algoa.tmc : ES96.tma ES96sws.tma ES96srvr
 	$(SERVER) ./ES96srvr
-	$(TMCALGO) -V "`./ES96srvr -R`" ES96.tma
+	$(TMCALGO) -V "`./ES96srvr -R`" ES96.tma ES96sws.tma
 ES96algo.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc ES96algoa.tmc
 	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc ES96algoa.tmc
 ES96algooui.c : $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui

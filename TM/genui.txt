@@ -1,7 +1,7 @@
 HEADER ES96 Ozone
 MNEMONIC ES96
-HOMEDIR /home/es96
-ROWS 18
+HOMEDIR ES96_Data
+ROWS 10
   4 T_Cell_In_A Ozone:Cell Temp In 
   4 T_A_1 Ozone:Cell Temp 1
   4 T_A_2 Ozone:Cell Temp 2

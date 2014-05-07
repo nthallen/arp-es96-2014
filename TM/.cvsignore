@@ -19,6 +19,7 @@ ES96dispnc.cc
 ES96dispncoui.c
 ES96dispncoui.o
 ES96dispnc.o
+ES96sws.tma
 ES96algoa.tmc
 ES96algo.cc
 ES96algooui.c
