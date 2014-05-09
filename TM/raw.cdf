@@ -23,9 +23,14 @@
 #   21 Z2_H_St 
 #   22 Z5_H_St 
 #   23 freemem 
-csv raw_4 5
+csv raw_4 9
   0 Traw_4 %.3lf
   1 DS813 %.0lf 1.0*
   2 Dtct_A %.0lf 1.0*
   3 Dtct_Src_A %.0lf 1.0*
   4 ADC_Stat %.0lf 1.0*
+  5 T_A_1 %.0lf 1.0*
+  6 T_A_2 %.0lf 1.0*
+  7 T_A_3 %.0lf 1.0*
+  8 T_A_4 %.0lf 1.0*
+
