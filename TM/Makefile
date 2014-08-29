@@ -1,9 +1,10 @@
-# Makefile Generated Tue May 06 07:37:50 EDT 2014
+# Makefile Generated Fri Aug 29 16:03:03 EDT 2014
 MNC=ES96
 SPECFILE=ES96.spec
-SRC=base.tmc SWData.tmc SWData.h AI_col.tmc adc_col.tmc
-SRC+=SWData_col.tmc dccc.cmd ao.cmd SWData.cmd dstat.tmc adc_conv.tmc
-SRC+=T30K75KU.tmc T1M1M.tmc ES96.tbl rtg.tmc ES96.tma ES96.sws
+PCMFILE=ES96.pcm
+SRC=base.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc SWData.h
+SRC+=AI_col.tmc adc_col.tmc SWData_col.tmc dccc.cmd ao.cmd SWData.cmd
+SRC+=dstat.tmc adc_conv.tmc ES96.tbl rtg.tmc ES96.tma ES96.sws
 SRC+=ES96eng.cdf raw.cdf ES96.doit
 TOOL=ES96.spec Makefile
 SCRIPT=interact dccc.dccc
@@ -23,17 +24,19 @@ DISTRIB=ES96.pcm tm.dac
 IDISTRIB=Experiment.config VERSION doit
 SRCDIST=ES96.tbl ES96.tma /usr/local/share/huarp/freemem.tmc
 SRCDIST+=base.tmc /usr/local/share/huarp/cpu_usage.tmc
-SRCDIST+=/usr/local/share/huarp/tmdf.tmc SWData.tmc SWData.h
+SRCDIST+=/usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc
+SRCDIST+=SWData.tmc SWData.h
 TMCBASE=/usr/local/share/huarp/freemem.tmc base.tmc
 TMCBASE+=/usr/local/share/huarp/cpu_usage.tmc
-TMCBASE+=/usr/local/share/huarp/tmdf.tmc SWData.tmc SWData.h
+TMCBASE+=/usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc
+TMCBASE+=SWData.tmc SWData.h
 CMDBASE=/usr/local/share/huarp/root.cmd
 CMDBASE+=/usr/local/share/huarp/getcon.cmd
 CMDBASE+=/usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
 COLBASE=/usr/local/share/huarp/freemem_col.tmc
 COLBASE+=/usr/local/share/huarp/cpu_usage_col.tmc
 COLBASE+=/usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc
-COLBASE+=SWData_col.tmc
+COLBASE+=/usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
 SWSBASE=ES96.sws
 QCLIBASE=
 PHTGT=ES96tbl.tmc
@@ -54,7 +57,10 @@ VERSION=`cat VERSION`
 extdistribution : $(DSTRB) $(SRCDIST) VERSION
 	@[ -d $(TGTDIR)/bin ] || mkdir $(TGTDIR)/bin
 	@[ -d $(TGTDIR)/bin/$(VERSION) ] || mkdir $(TGTDIR)/bin/$(VERSION)
-	@[ -d  $(TGTDIR)/bin/$(VERSION)/Base ] || mkdir $(TGTDIR)/bin/$(VERSION)/Base
+	@[ -d $(TGTDIR)/bin/$(VERSION)/Base ] || mkdir $(TGTDIR)/bin/$(VERSION)/Base
+	@[ ! -f $(TGTDIR)/bin/$(VERSION)/$(PCMFILE) ] || \
+	  cmp -s $(TGTDIR)/bin/$(VERSION)/$(PCMFILE) $(PCMFILE) || \
+	  ( echo "$(PCMFILE) changed without VERSION update"; false )
 	@distribute $(FORCE) $(TGTDIR)/bin/$(VERSION) $(DSTRB)
 	@distribute $(FORCE) $(TGTDIR)/bin/$(VERSION)/Base $(SRCDIST)
 distribution : extdistribution
@@ -96,8 +102,8 @@ ES96clt : ES96clt.o ES96cltoui.o
 ES96cltnc : ES96cltnc.o ES96cltncoui.o
 	$(LINK.normCXX) ES96cltnc.o ES96cltncoui.o -ltmnc -lncurses -ltmpp -ltm -lnort
 	$(OUIUSE) ES96cltncoui.c
-ES96col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc SWData_col.tmc
-	$(TMC.col) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc SWData_col.tmc
+ES96col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc /usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
+	$(TMC.col) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc /usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
 ES96coloui.c : $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 ES96coloui.o : ES96coloui.c SWData.h
@@ -110,15 +116,15 @@ ES96srvroui.c : $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(O
 	$(OUI) $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 ES96srvroui.o : ES96srvroui.c
 ES96tbl.tmc : ES96.tbl
-ES96disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
+ES96disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
 ES96dispoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96dispoui.o : ES96dispoui.c SWData.h
 ES96disp.o : ES96disp.cc SWData.h
 ES96tblnc.tmc : ES96.tbl
-ES96dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc dstat.tmc adc_conv.tmc T30K75KU.tmc T1M1M.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
+ES96dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
 ES96dispncoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96dispncoui.o : ES96dispncoui.c SWData.h
@@ -128,8 +134,8 @@ ES96sws.tma : ES96.sws
 ES96algoa.tmc : ES96.tma ES96sws.tma ES96srvr
 	$(SERVER) ./ES96srvr
 	$(TMCALGO) -V "`./ES96srvr -R`" ES96.tma ES96sws.tma
-ES96algo.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc ES96algoa.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc ES96algoa.tmc
+ES96algo.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc ES96algoa.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc ES96algoa.tmc
 ES96algooui.c : $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96algooui.o : ES96algooui.c SWData.h
@@ -138,8 +144,8 @@ ES96engextcdf.oui : ES96eng.cdf
 	$(EDF2OUI) ES96eng.cdf
 ES96engext.tmc : ES96eng.cdf
 	$(EDF2EXT) ES96eng.cdf
-ES96engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc adc_conv.tmc T1M1M.tmc ES96engext.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc T30K75KU.tmc adc_conv.tmc T1M1M.tmc ES96engext.tmc
+ES96engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc ES96engext.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc ES96engext.tmc
 ES96engextoui.c : ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 ES96engextoui.o : ES96engextoui.c SWData.h
@@ -148,8 +154,8 @@ rawextcdf.oui : raw.cdf
 	$(EDF2OUI) raw.cdf
 rawext.tmc : raw.cdf
 	$(EDF2EXT) raw.cdf
-rawext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc rawext.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc SWData.tmc rawext.tmc
+rawext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawext.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawext.tmc
 rawextoui.c : rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 rawextoui.o : rawextoui.c SWData.h
