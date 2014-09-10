@@ -1,0 +1,86 @@
+#! /bin/bash
+function nl_error {
+  echo "getrun: $*" >&2
+  exit 1
+}
+
+flt=''
+gse=hcigse.arp.harvard.edu
+# gse=10.0.5.19
+relay=fugue.arp.harvard.edu
+RAW_Dir=RAW
+use_relay=no
+HomeDir=/net/htwgse2/home/es96
+Exp=ES96
+RunType=''
+Copy_CSV=yes
+Matlab=yes
+SCPOPTS=-Cp
+
+function usage {
+  echo "./getrun [options] [ [runtype] <run> ]+"
+  echo " options:"
+  echo "   relay: Relay through gateway machine: $relay"
+  echo "   nocsv: Don't copy csv files or start matlab"
+  echo " runtype: flight, cal, data, junk"
+  echo "   runtype selection stays in effect until another runtype is selected"
+  exit 0
+}
+
+function do_scp {
+  RC=''
+  [ $use_relay = yes ] && RC="-o 'ProxyCommand /usr/bin/ssh $relay /usr/bin/nc $gse 22'"
+  eval time scp $SCPOPTS $RC $*
+}
+
+function do_tar {
+  # do_tar $run $dir
+  # Accesses globals:
+  #   use_relay gse relay flt HomeDir RunType Decimate
+  run=$1
+  src=$2
+  PC="ProxyCommand /usr/bin/ssh $relay /usr/bin/nc $gse 22"
+  RC=''
+  DC=''
+  [ $use_relay = yes ] && RC="-o 'ProxyCommand /usr/bin/ssh $relay /usr/bin/nc $gse 22'"
+  [ $Decimate = yes ] && DC='--exclude="*[1-9].dat"'
+  echo Retrieving $HomeDir/raw/$RunType/$run/$src
+  eval time ssh $RC $gse tar -czf- -C $HomeDir/raw/$RunType/$run $DC $src | tar -C $RAW_Dir/$run$flt -xzf-
+}
+
+for run in $*; do
+  case $run in
+    -f) flt=F; RunType=flight;;
+    nocsv) Copy_CSV=no;;
+    gse=*) gse=${run#gse=};;
+    relay) use_relay=yes;;
+    relay=*) use_relay=yes; relay=${run#relay=};;
+    nomatlab) Matlab=no;;
+    help) usage;;
+    --help) usage;;
+    cal) flt=''; RunType=cal;;
+    flight) flt=F; RunType=flight;;
+    data) flt=''; RunType=data;;
+    junk) flt=''; RunType=junk;;
+    [1-9][0-9][0-9][0-9][0-9][0-9].[0-9]*)
+      echo $run
+      [ -d $RAW_Dir/$run$flt ] || mkdir RAW/$run$flt
+      if [ $Copy_CSV = yes ]; then
+        [ $Matlab = yes -a ! -f startup.m ] &&
+          nl_error "startup.m is missing: copy from ES96 eng or select nomatlab"
+        do_scp $gse:$HomeDir/anal/$run/*.csv $RAW_Dir/$run$flt
+        [ $Matlab = yes ] && echo "$RAW_Dir/$run$flt" >>runs.dat
+      fi
+      if [ -n "$RunType" ]; then
+        [ -f $RAW_Dir/$run$flt/$Exp.log ] ||
+          do_scp $gse:$HomeDir/raw/$RunType/$run/$Exp.log $RAW_Dir/$run$flt/$Exp.log
+        [ -f $RAW_Dir/$run$flt/saverun.log ] ||
+          do_scp $gse:$HomeDir/raw/$RunType/$run/saverun.log $RAW_Dir/$run$flt/saverun.log
+        [ -f $RAW_Dir/$run$flt/flight.sh.log ] ||
+          do_scp $gse:$HomeDir/raw/$RunType/$run/flight.sh.log $RAW_Dir/$run$flt/flight.sh.log
+      fi;;
+    *) nl_error "Unrecognized option: '$run'";;
+  esac
+done
+
+[ -f runs.dat ] && matlab
