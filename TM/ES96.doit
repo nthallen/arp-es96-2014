@@ -1,5 +1,0 @@
-display ES96disp -C $FlightNode
-client ES96clt
-memo
-batchfile interact
-phrtg

@@ -1,4 +1,4 @@
-# Startup script for ES96
+# Startup script for O3
   Launch memo memo -o $Experiment.log
   Launch TM/DCo TMbfr
 
@@ -6,8 +6,8 @@
   echo "Running script interact" >$memo
 
   Launch dccc dccc -f $TMBINDIR/dccc.dccc
-  Launch DG/cmd ES96col
-  Launch cmd/server ES96srvr
+  Launch DG/cmd O3col
+  Launch cmd/server O3srvr
   Launch - lgr -N `mlf_find LOG`
   Launch - tmdf
-  Launch - ES96algo -v
+  Launch - O3algo -v

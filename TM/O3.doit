@@ -1,0 +1,5 @@
+display O3disp -C $FlightNode
+client O3clt
+memo
+batchfile interact
+phrtg

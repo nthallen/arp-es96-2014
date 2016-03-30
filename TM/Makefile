@@ -1,29 +1,28 @@
-# Makefile Generated Fri Aug 29 16:03:03 EDT 2014
-MNC=ES96
-SPECFILE=ES96.spec
-PCMFILE=ES96.pcm
+# Makefile Generated Tue Mar 29 21:11:57 EDT 2016
+MNC=O3
+SPECFILE=O3.spec
+PCMFILE=O3.pcm
 SRC=base.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc SWData.h
 SRC+=AI_col.tmc adc_col.tmc SWData_col.tmc dccc.cmd ao.cmd SWData.cmd
-SRC+=dstat.tmc adc_conv.tmc ES96.tbl rtg.tmc ES96.tma ES96.sws
-SRC+=ES96eng.cdf raw.cdf ES96.doit
-TOOL=ES96.spec Makefile
+SRC+=dstat.tmc adc_conv.tmc O3.tbl rtg.tmc O3.tma O3.sws O3eng.cdf
+SRC+=raw.cdf O3.doit
+TOOL=O3.spec Makefile
 SCRIPT=interact dccc.dccc
-OBJ=ES96col.cc ES96.pcm tm.dac ES96coloui.c ES96coloui.o ES96col.o
-OBJ+=ES96cmd.cc ES96cmd.dat ES96srvr.o ES96srvroui.c ES96srvroui.o
-OBJ+=ES96tbl.tmc ES96disp.cc ES96dispoui.c ES96dispoui.o ES96disp.o
-OBJ+=ES96tblnc.tmc ES96dispnc.cc ES96dispncoui.c ES96dispncoui.o
-OBJ+=ES96dispnc.o ES96sws.tma ES96algoa.tmc ES96algo.cc ES96algooui.c
-OBJ+=ES96algooui.o ES96algo.o ES96engextcdf.oui ES96engext.tmc
-OBJ+=ES96engext.cc ES96engextoui.c ES96engextoui.o ES96engext.o
-OBJ+=rawextcdf.oui rawext.tmc rawext.cc rawextoui.c rawextoui.o
-OBJ+=rawext.o doit.dep ES96clt.o ES96cltoui.c ES96cltoui.o
-OBJ+=ES96cltnc.o ES96cltncoui.c ES96cltncoui.o
-TGT=ES96col ES96srvr ES96disp ES96dispnc ES96algo ES96engext rawext
-TGT+=doit ES96clt ES96cltnc
-DISTRIB=ES96.pcm tm.dac
+OBJ=O3col.cc O3.pcm tm.dac O3coloui.c O3coloui.o O3col.o O3cmd.cc
+OBJ+=O3cmd.dat O3srvr.o O3srvroui.c O3srvroui.o O3tbl.tmc O3disp.cc
+OBJ+=O3dispoui.c O3dispoui.o O3disp.o O3tblnc.tmc O3dispnc.cc
+OBJ+=O3dispncoui.c O3dispncoui.o O3dispnc.o O3sws.tma O3algoa.tmc
+OBJ+=O3algo.cc O3algooui.c O3algooui.o O3algo.o O3engextcdf.oui
+OBJ+=O3engcdf.tmc O3engext.cc O3engextoui.c O3engextoui.o O3engext.o
+OBJ+=rawextcdf.oui rawcdf.tmc rawext.cc rawextoui.c rawextoui.o
+OBJ+=rawext.o doit.dep O3clt.o O3cltoui.c O3cltoui.o O3cltnc.o
+OBJ+=O3cltncoui.c O3cltncoui.o
+TGT=O3col O3srvr O3disp O3dispnc O3algo O3engext rawext doit O3clt
+TGT+=O3cltnc
+DISTRIB=O3.pcm tm.dac
 IDISTRIB=Experiment.config VERSION doit
-SRCDIST=ES96.tbl ES96.tma /usr/local/share/huarp/freemem.tmc
-SRCDIST+=base.tmc /usr/local/share/huarp/cpu_usage.tmc
+SRCDIST=O3.tbl O3.tma /usr/local/share/huarp/freemem.tmc base.tmc
+SRCDIST+=/usr/local/share/huarp/cpu_usage.tmc
 SRCDIST+=/usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc
 SRCDIST+=SWData.tmc SWData.h
 TMCBASE=/usr/local/share/huarp/freemem.tmc base.tmc
@@ -33,26 +32,30 @@ TMCBASE+=SWData.tmc SWData.h
 CMDBASE=/usr/local/share/huarp/root.cmd
 CMDBASE+=/usr/local/share/huarp/getcon.cmd
 CMDBASE+=/usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
+CMDBASE+=SWData.h
 COLBASE=/usr/local/share/huarp/freemem_col.tmc
 COLBASE+=/usr/local/share/huarp/cpu_usage_col.tmc
 COLBASE+=/usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc
 COLBASE+=/usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
-SWSBASE=ES96.sws
+SWSBASE=O3.sws
 QCLIBASE=
-PHTGT=ES96tbl.tmc
+AG_CPPFLAGS=
+PHTGT=O3tbl.tmc
 RCS=$(SRC) $(TOOL) $(SCRIPT)
 SOURCE=$(RCS) $(NONRCS)
 OBJECT=$(OBJ) *.err
 TARGET=$(TGT)
 DSTRB=$(TGT) $(DISTRIB) $(SCRIPT)
-TGTDIR= $(TGTNODE)/home/es96
+TGTDIR= $(TGTNODE)/home/ozone
 include /usr/local/share/huarp/appgen.mk
 
-.PHONY : all extdistribution distribution clean check_photon
+.PHONY : all all-dist extdistribution distribution clean clean-dist check_photon
 
-all : Makefile check_photon $(TGT) .cvsignore
-Makefile : ES96.spec
-	appgen ES96.spec
+IGNOREFILE=.gitignore
+all : Makefile check_photon $(TGT) $(IGNOREFILE)
+all-dist : $(DSTRB) $(SRCDIST) VERSION
+Makefile : O3.spec
+	appgen O3.spec
 VERSION=`cat VERSION`
 extdistribution : $(DSTRB) $(SRCDIST) VERSION
 	@[ -d $(TGTDIR)/bin ] || mkdir $(TGTDIR)/bin
@@ -71,119 +74,120 @@ ifeq ($(WPHOTON),YES)
 	  cmp -s $$tgt /usr/local/share/huarp/nulltbl.tmc && echo Remaking $$tgt && rm -f $$tgt; \
 	done; true
 endif
-ES96col : ES96col.o ES96coloui.o
-	$(LINK.privCXX) ES96col.o ES96coloui.o -lsubbus -ltmpp -ltm -lnort
-	$(OUIUSE) ES96coloui.c
-	$(PROMOTE) ES96col
-ES96srvr : ES96srvr.o ES96srvroui.o
-	$(LINK.privCXX) ES96srvr.o ES96srvroui.o -lsubbus -ltmpp -ltm -lnort
-	$(OUIUSE) ES96srvroui.c
-	$(PROMOTE) ES96srvr
-ES96disp : ES96disp.o ES96dispoui.o
-	$(LINK.normCXX) ES96disp.o ES96dispoui.o -ldisp -ltmph -lph -ltmpp -ltm -lnort
-	$(OUIUSE) ES96dispoui.c
-ES96dispnc : ES96dispnc.o ES96dispncoui.o
-	$(LINK.normCXX) ES96dispnc.o ES96dispncoui.o -ldispnc -ltmnc -lncurses -ltmpp -ltm -lnort
-	$(OUIUSE) ES96dispncoui.c
-ES96algo : ES96algo.o ES96algooui.o
-	$(LINK.normCXX) ES96algo.o ES96algooui.o -ltmpp -ltm -lnort
-	$(OUIUSE) ES96algooui.c
-ES96engext : ES96engext.o ES96engextoui.o
-	$(LINK.normCXX) ES96engext.o ES96engextoui.o -ltmpp -ltm -lnort
-	$(OUIUSE) ES96engextoui.c
+O3col : O3col.o O3coloui.o
+	$(LINK.privCXX) O3col.o O3coloui.o -lsubbus -ltmpp -ltm -lnort
+	$(OUIUSE) O3coloui.c
+	$(PROMOTE) O3col
+O3srvr : O3srvr.o O3srvroui.o
+	$(LINK.privCXX) O3srvr.o O3srvroui.o -lsubbus -ltmpp -ltm -lnort
+	$(OUIUSE) O3srvroui.c
+	$(PROMOTE) O3srvr
+O3disp : O3disp.o O3dispoui.o
+	$(LINK.normCXX) O3disp.o O3dispoui.o -ldisp -ltmph -lph -ltmpp -ltm -lnort
+	$(OUIUSE) O3dispoui.c
+O3dispnc : O3dispnc.o O3dispncoui.o
+	$(LINK.normCXX) O3dispnc.o O3dispncoui.o -ldispnc -ltmnc -lncurses -ltmpp -ltm -lnort
+	$(OUIUSE) O3dispncoui.c
+O3algo : O3algo.o O3algooui.o
+	$(LINK.normCXX) O3algo.o O3algooui.o -ltmpp -ltm -lnort
+	$(OUIUSE) O3algooui.c
+O3engext : O3engext.o O3engextoui.o
+	$(LINK.normCXX) O3engext.o O3engextoui.o -ltmpp -ltm -lnort
+	$(OUIUSE) O3engextoui.c
 rawext : rawext.o rawextoui.o
 	$(LINK.normCXX) rawext.o rawextoui.o -ltmpp -ltm -lnort
 	$(OUIUSE) rawextoui.c
-doit : ES96.doit
-	mkdoit3 -o doit  ES96.doit
-ES96clt : ES96clt.o ES96cltoui.o
-	$(LINK.normCXX) ES96clt.o ES96cltoui.o -ltmph -lph -ltmpp -ltm -lnort
-	$(OUIUSE) ES96cltoui.c
-ES96cltnc : ES96cltnc.o ES96cltncoui.o
-	$(LINK.normCXX) ES96cltnc.o ES96cltncoui.o -ltmnc -lncurses -ltmpp -ltm -lnort
-	$(OUIUSE) ES96cltncoui.c
-ES96col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc /usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
+doit : O3.doit
+	mkdoit3 -o doit  O3.doit
+O3clt : O3clt.o O3cltoui.o
+	$(LINK.normCXX) O3clt.o O3cltoui.o -ltmph -lph -ltmpp -ltm -lnort
+	$(OUIUSE) O3cltoui.c
+O3cltnc : O3cltnc.o O3cltncoui.o
+	$(LINK.normCXX) O3cltnc.o O3cltncoui.o -ltmnc -lncurses -ltmpp -ltm -lnort
+	$(OUIUSE) O3cltncoui.c
+O3col.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc /usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
 	$(TMC.col) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc /usr/local/share/huarp/freemem_col.tmc /usr/local/share/huarp/cpu_usage_col.tmc /usr/local/share/huarp/tmdf_col.tmc AI_col.tmc adc_col.tmc /usr/local/share/huarp/DACS_ID.tmc SWData_col.tmc
-ES96coloui.c : $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
+O3coloui.c : $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/collect.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
-ES96coloui.o : ES96coloui.c SWData.h
-ES96col.o : ES96col.cc SWData.h
-ES96cmd.cc : /usr/local/share/huarp/root.cmd /usr/local/share/huarp/getcon.cmd /usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
-	$(CMDGEN) -d ES96cmd.dat /usr/local/share/huarp/root.cmd /usr/local/share/huarp/getcon.cmd /usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
-ES96srvr.o : ES96cmd.cc
-	$(COMPILE.srvr) ES96cmd.cc
-ES96srvroui.c : $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
+O3coloui.o : O3coloui.c SWData.h
+O3col.o : O3col.cc SWData.h
+O3cmd.cc : /usr/local/share/huarp/root.cmd /usr/local/share/huarp/getcon.cmd /usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
+	$(CMDGEN) -d O3cmd.dat /usr/local/share/huarp/root.cmd /usr/local/share/huarp/getcon.cmd /usr/local/share/huarp/phrtg.cmd dccc.cmd ao.cmd SWData.cmd
+O3srvr.o : O3cmd.cc SWData.h
+	$(COMPILE.srvr) O3cmd.cc
+O3srvroui.c : $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/cis.oui $(OUIDIR)/seteuid.oui $(OUIDIR)/subbus.oui $(OUIDIR)/msg.oui
-ES96srvroui.o : ES96srvroui.c
-ES96tbl.tmc : ES96.tbl
-ES96disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tbl.tmc rtg.tmc
-ES96dispoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+O3srvroui.o : O3srvroui.c SWData.h
+O3tbl.tmc : O3.tbl
+O3disp.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc O3tbl.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc O3tbl.tmc rtg.tmc
+O3dispoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
-ES96dispoui.o : ES96dispoui.c SWData.h
-ES96disp.o : ES96disp.cc SWData.h
-ES96tblnc.tmc : ES96.tbl
-ES96dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc ES96tblnc.tmc rtg.tmc
-ES96dispncoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+O3dispoui.o : O3dispoui.c SWData.h
+O3disp.o : O3disp.cc SWData.h
+O3tblnc.tmc : O3.tbl
+O3dispnc.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc O3tblnc.tmc rtg.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc dstat.tmc adc_conv.tmc /usr/local/share/huarp/flttime.tmc O3tblnc.tmc rtg.tmc
+O3dispncoui.c : /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) /usr/local/share/oui/cic.oui $(OUIDIR)/nctable.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
-ES96dispncoui.o : ES96dispncoui.c SWData.h
-ES96dispnc.o : ES96dispnc.cc SWData.h
-ES96sws.tma : ES96.sws
-	$(COMPILE.sws) ES96.sws
-ES96algoa.tmc : ES96.tma ES96sws.tma ES96srvr
-	$(SERVER) ./ES96srvr
-	$(TMCALGO) -V "`./ES96srvr -R`" ES96.tma ES96sws.tma
-ES96algo.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc ES96algoa.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc ES96algoa.tmc
-ES96algooui.c : $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+O3dispncoui.o : O3dispncoui.c SWData.h
+O3dispnc.o : O3dispnc.cc SWData.h
+O3sws.tma : O3.sws
+	$(COMPILE.sws) O3.sws
+O3algoa.tmc : O3.tma O3sws.tma O3srvr
+	$(SERVER) ./O3srvr
+	$(TMCALGO) -V "`./O3srvr -R`" O3.tma O3sws.tma
+O3algo.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc O3algoa.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc O3algoa.tmc
+O3algooui.c : $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/tma.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
-ES96algooui.o : ES96algooui.c SWData.h
-ES96algo.o : ES96algo.cc SWData.h
-ES96engextcdf.oui : ES96eng.cdf
-	$(EDF2OUI) ES96eng.cdf
-ES96engext.tmc : ES96eng.cdf
-	$(EDF2EXT) ES96eng.cdf
-ES96engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc ES96engext.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc ES96engext.tmc
-ES96engextoui.c : ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
-	$(OUI) ES96engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
-ES96engextoui.o : ES96engextoui.c SWData.h
-ES96engext.o : ES96engext.cc SWData.h
+O3algooui.o : O3algooui.c SWData.h
+O3algo.o : O3algo.cc SWData.h
+O3engextcdf.oui : O3eng.cdf
+	$(EDF2OUI) O3eng.cdf
+O3engcdf.tmc : O3eng.cdf
+	$(EDF2EXT) O3eng.cdf
+O3engext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc O3engcdf.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc adc_conv.tmc O3engcdf.tmc
+O3engextoui.c : O3engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+	$(OUI) O3engextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
+O3engextoui.o : O3engextoui.c SWData.h
+O3engext.o : O3engext.cc SWData.h
 rawextcdf.oui : raw.cdf
 	$(EDF2OUI) raw.cdf
-rawext.tmc : raw.cdf
+rawcdf.tmc : raw.cdf
 	$(EDF2EXT) raw.cdf
-rawext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawext.tmc
-	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawext.tmc
+rawext.cc : /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawcdf.tmc
+	$(TMC) /usr/local/share/huarp/freemem.tmc base.tmc /usr/local/share/huarp/cpu_usage.tmc /usr/local/share/huarp/tmdf.tmc T30K75KU.tmc T1M250KU.tmc SWData.tmc rawcdf.tmc
 rawextoui.c : rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 	$(OUI) rawextcdf.oui $(OUIDIR)/dc.oui $(OUIDIR)/msg.oui
 rawextoui.o : rawextoui.c SWData.h
 rawext.o : rawext.cc SWData.h
-doit.dep : ES96.doit
-	mkdoit3 -M -o doit  ES96.doit
+doit.dep : O3.doit
+	mkdoit3 -M -o doit  O3.doit
 -include doit.dep
-ES96clt.o : ES96cmd.cc
-	$(COMPILE.clt) ES96cmd.cc
-ES96cltoui.c : $(OUIDIR)/kbdclt.oui $(OUIDIR)/msg.oui
+O3clt.o : O3cmd.cc SWData.h
+	$(COMPILE.clt) O3cmd.cc
+O3cltoui.c : $(OUIDIR)/kbdclt.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/kbdclt.oui $(OUIDIR)/msg.oui
-ES96cltoui.o : ES96cltoui.c
-ES96cltnc.o : ES96cmd.cc
-	$(COMPILE.cltnc) ES96cmd.cc
-ES96cltncoui.c : $(OUIDIR)/kbdclt.oui $(OUIDIR)/nctable.oui $(OUIDIR)/msg.oui
+O3cltoui.o : O3cltoui.c SWData.h
+O3cltnc.o : O3cmd.cc SWData.h
+	$(COMPILE.cltnc) O3cmd.cc
+O3cltncoui.c : $(OUIDIR)/kbdclt.oui $(OUIDIR)/nctable.oui $(OUIDIR)/msg.oui
 	$(OUI) $(OUIDIR)/kbdclt.oui $(OUIDIR)/nctable.oui $(OUIDIR)/msg.oui
-ES96cltncoui.o : ES96cltncoui.c
-SWData.h SWData.tmc SWData_col.tmc SWData.cmd :  ES96.sws
-	swscomp -o SWData  ES96.sws
+O3cltncoui.o : O3cltncoui.c SWData.h
+SWData.h SWData.tmc SWData_col.tmc SWData.cmd :  O3.sws
+	swscomp -o SWData  O3.sws
 
 tidy :
 	rm -f $(OBJECT)
 clean : tidy
 	rm -f $(TARGET)
-.cvsignore : Makefile
-	@for i in $(OBJECT) $(TARGET); do echo "$$i"; done >.cvsignore
+clean-dist : clean
+$(IGNOREFILE) : Makefile
+	@for i in $(OBJECT) $(TARGET); do echo "$$i"; done >$(IGNOREFILE)
 COLFLAGS=-Haddress.h
-address.h : ES96col.cc
-ES96srvr.o : address.h
-ES96eng.cdf : genui.txt
+address.h : O3col.cc
+O3srvr.o : address.h
+O3eng.cdf : genui.txt
 	genui -d ../eng -c genui.txt
