@@ -25,7 +25,7 @@ TM typedef AI16 P500Torr
 
 Calibration (P500Torr, TORR) {
   0, 0,
-  64848, 500
+  32424, 500
 }
 
 TM typedef AI16 AI16_5V { text "%7.4lf"; convert VOLTS; }

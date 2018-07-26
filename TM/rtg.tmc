@@ -2,3 +2,7 @@ ci_sendfcmd(2, "PhRTG Datum CPU_Pct %lu %s\n", itime(), text(CPU_Pct));
 ci_sendfcmd(2, "PhRTG Datum adc_n_avg %.2lf %s\n", dtime(), text(adc_n_avg));
 ci_sendfcmd(2, "PhRTG Datum Dtct_A %.2lf %s\n", dtime(), text(Dtct_A_c));
 ci_sendfcmd(2, "PhRTG Datum Dtct_Src_A %.2lf %s\n", dtime(), text(Dtct_Src_A_c));
+ci_sendfcmd(2, "PhRTG Datum T_Cell_In_A %.2lf %s\n", dtime(), text(T_Cell_In_A));
+ci_sendfcmd(2, "PhRTG Datum P_A %.2lf %s\n", dtime(), text(P_A));
+ci_sendfcmd(2, "PhRTG Datum Z2_H_St %.2lf %s\n", dtime(), text(Z2_H_St));
+ci_sendfcmd(2, "PhRTG Datum Z2_H_V %.2lf %s\n", dtime(), text(CT_Z2_Mir_A));
