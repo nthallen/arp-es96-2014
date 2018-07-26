@@ -1,0 +1,8 @@
+pwrmon {
+  HBox { +-; Title: "PwrMon"; -+ };
+  ""       >"I(mV)"<   >V<;
+  "1:"     HBox{ (PM0I1,5); (PM0I1S,1) } HBox{ (PM0V1,7); (PM0V1S,1) };
+  "2:"     HBox{ (PM0I2,5); (PM0I2S,1) } HBox{ (PM0V2,7); (PM0V2S,1) };
+  "Pumps:" HBox{ (PmpsI,5); (PmpsIS,1) } HBox{ (PmpsV,7); (PmpsVS,1) };
+  >{ "1-2:" (PM0TO,7) "Pumps:" (PM1TO,7)}<;
+}
