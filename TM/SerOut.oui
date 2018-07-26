@@ -5,7 +5,12 @@
 
 <sort>
 	-d <port> specify serial port for telemetry (/dev/ser1)
-	-b <baudrate> specify baud rate for telemetry (1200)
+	-b <baudrate> specify baud rate for telemetry (2400)
+
+<unsort>
+<blank>
+Data client that writes raw telemetry data to a serial port
+for radio transmission to a remote ground station.
 
 <opts> "d:b:"
 

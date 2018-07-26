@@ -15,7 +15,6 @@
 #define DATA_CLIENT_CLASS serout_data_client
 
 typedef union {
-  scan_hdr_t scan_hdr;
   uint8_t row[0];
 } row_buf_t;
 

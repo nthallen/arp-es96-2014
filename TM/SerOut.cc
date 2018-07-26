@@ -12,7 +12,7 @@
 
 serout_data_client *serout_data_client::DCp = 0;
 const char *serout_data_client::tm_port = "/dev/ser1";
-int serout_data_client::baud = 115200;
+int serout_data_client::baud = 2400;
 
 void set_serout_port(const char *port) {
   serout_data_client::tm_port = port;

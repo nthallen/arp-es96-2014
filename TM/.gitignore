@@ -1,5 +1,4 @@
 O3col.cc
-O3.pcm
 tm.dac
 O3coloui.c
 O3coloui.o
@@ -38,12 +37,19 @@ rawextoui.c
 rawextoui.o
 rawext.o
 doit.dep
+seroutext.cc
+seroutextoui.c
+seroutextoui.o
+seroutext.o
+SerOut.o
 O3clt.o
 O3cltoui.c
 O3cltoui.o
 O3cltnc.o
 O3cltncoui.c
 O3cltncoui.o
+O3tbl.tmc.dep
+O3tblnc.tmc.dep
 *.err
 O3col
 O3srvr
@@ -53,5 +59,6 @@ O3algo
 O3engext
 rawext
 doit
+seroutext
 O3clt
 O3cltnc
