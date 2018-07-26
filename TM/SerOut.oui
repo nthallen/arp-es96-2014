@@ -1,0 +1,22 @@
+<package> SerOut
+<include> msg
+<include> "SerOut.h"
+<follow> msghdr
+
+<sort>
+	-d <port> specify serial port for telemetry (/dev/ser1)
+	-b <baudrate> specify baud rate for telemetry (1200)
+
+<opts> "d:b:"
+
+<switch>
+  case 'd':
+    set_serout_port(optarg);
+    break;
+  case 'b':
+    set_serout_baud(atoi(optarg));
+    break;
+  
+<package> msghdr_default
+<var>
+  char *msg_hdr_default = "Tel";

@@ -1,0 +1,21 @@
+<package> uplink_rcvr
+<include> "uplink_rcvr.h"
+<include> msg
+<follow> msg
+
+<opts> "p:a:"
+<sort>
+	-p <port> serial port for uplink
+	-a XX 2-digit hex instrument address: only for test
+
+<switch>
+  case 'p':
+    uplink_port = optarg;
+    break;
+  case 'a':
+    uplink_addr = optarg;
+    break;
+
+<package> msghdr_default
+<var>
+  char *msg_hdr_default = "Uplink";

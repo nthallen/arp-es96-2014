@@ -35,6 +35,7 @@ rawext : raw.cdf
 
 doit : O3.doit
 
+seroutext : SerOut.cc SerOut.oui SerOut.tmc
 %%
 COLFLAGS=-Haddress.h
 address.h : O3col.cc
