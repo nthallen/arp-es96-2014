@@ -1,14 +1,14 @@
 
 --------Frame Statistics-----------
 Major Frame: 4 minor frames, 1 Hz
-Minor Frame: 49 bytes, 4 Hz
+Minor Frame: 52 bytes, 4 Hz
 Effective Frame Dimensions:
-  4 Rows 49 Columns
+  4 Rows 52 Columns
   4 rows/sec
-  1568 bits/sec
-  Data:  1416 bits/sec  90 %
+  1664 bits/sec
+  Data:  1528 bits/sec  92 %
   Synch: 128 bits/sec  8 %
-  Empty: 24 bits/sec  2 %
+  Empty: 8 bits/sec  0 %
 -------End of Frame Statistics-----
 
 
@@ -29,34 +29,44 @@ Effective Frame Dimensions:
 4/1 Hz 2 bytes Datum T_Dtct_Src_A (1,0,28,2)
 4/1 Hz 2 bytes Datum T_LED_A (1,0,30,2)
 4/1 Hz 1 bytes Datum DS813 (1,0,32,1)
-4/1 Hz 2 bytes Datum Synch (1,0,47,2)
-1/1 Hz 2 bytes Datum CT_Inlet (4,0,33,2)
-1/1 Hz 2 bytes Datum CT_Z1_Mir_A (4,0,35,2)
-1/1 Hz 2 bytes Datum CT_Z2_Mir_A (4,0,37,2)
-1/1 Hz 2 bytes Datum Disk (4,0,39,2)
-1/1 Hz 2 bytes Datum Flw_Out_A (4,0,41,2)
-1/1 Hz 2 bytes Datum freemem (4,0,43,2)
-1/1 Hz 2 bytes Datum PM0I1 (4,0,45,2)
-1/1 Hz 2 bytes Datum PM0I2 (4,1,33,2)
-1/1 Hz 2 bytes Datum PM0V1 (4,1,35,2)
-1/1 Hz 2 bytes Datum PM0V2 (4,1,37,2)
-1/1 Hz 2 bytes Datum T_Dtct_Hou_A (4,1,39,2)
-1/1 Hz 2 bytes Datum T_LED_Hou_A (4,1,41,2)
-1/1 Hz 2 bytes Datum T_Pmp_1_Head (4,1,43,2)
-1/1 Hz 2 bytes Datum T_Pmp_1_Motor (4,1,45,2)
-1/1 Hz 2 bytes Datum T_Pmp_2_Head (4,2,33,2)
-1/1 Hz 2 bytes Datum T_Rove_1 (4,2,35,2)
-1/1 Hz 2 bytes Datum T_Rove_2 (4,2,37,2)
-1/1 Hz 2 bytes Datum T_Rove_3 (4,2,39,2)
-1/1 Hz 2 bytes Datum T_Rove_4 (4,2,41,2)
-1/1 Hz 2 bytes Datum T_Scb (4,2,43,2)
-1/1 Hz 2 bytes Datum T_Scb_Vlv_A (4,2,45,2)
-1/1 Hz 2 bytes Datum T_Vlv_UnScb_A (4,3,33,2)
-1/1 Hz 2 bytes Datum Z1_H_St (4,3,35,2)
-1/1 Hz 2 bytes Datum Z2_H_St (4,3,37,2)
-1/1 Hz 2 bytes Datum Z5_H_St (4,3,39,2)
-1/1 Hz 1 bytes Datum CPU_Pct (4,3,41,1)
-1/1 Hz 1 bytes Datum PM0Stat (4,3,42,1)
-1/1 Hz 1 bytes Datum SWStat (4,3,43,1)
+4/1 Hz 2 bytes Datum Synch (1,0,50,2)
+1/1 Hz 12 bytes Group DACS (4,0,33,12)
+1/1 Hz 2 bytes Member DACS_PTRHS (4,0,33,2)
+1/1 Hz 1 bytes Member DACS_Pb (4,0,35,1)
+1/1 Hz 2 bytes Member DACS_Pa (4,0,36,2)
+1/1 Hz 1 bytes Member DACS_T2b (4,0,38,1)
+1/1 Hz 2 bytes Member DACS_T2a (4,0,39,2)
+1/1 Hz 2 bytes Member DACS_RH (4,0,41,2)
+1/1 Hz 2 bytes Member DACS_T1 (4,0,43,2)
+1/1 Hz 2 bytes Datum CT_Inlet (4,0,45,2)
+1/1 Hz 2 bytes Datum CT_Z1_Mir_A (4,0,47,2)
+1/1 Hz 1 bytes Datum CPU_Pct (4,0,49,1)
+1/1 Hz 2 bytes Datum CT_Z2_Mir_A (4,1,33,2)
+1/1 Hz 2 bytes Datum Disk (4,1,35,2)
+1/1 Hz 2 bytes Datum Flw_Out_A (4,1,37,2)
+1/1 Hz 2 bytes Datum freemem (4,1,39,2)
+1/1 Hz 2 bytes Datum PM0I1 (4,1,41,2)
+1/1 Hz 2 bytes Datum PM0I2 (4,1,43,2)
+1/1 Hz 2 bytes Datum PM0V1 (4,1,45,2)
+1/1 Hz 2 bytes Datum PM0V2 (4,1,47,2)
+1/1 Hz 1 bytes Datum PM0Stat (4,1,49,1)
+1/1 Hz 2 bytes Datum T_Dtct_Hou_A (4,2,33,2)
+1/1 Hz 2 bytes Datum T_LED_Hou_A (4,2,35,2)
+1/1 Hz 2 bytes Datum T_Pmp_1_Head (4,2,37,2)
+1/1 Hz 2 bytes Datum T_Pmp_1_Motor (4,2,39,2)
+1/1 Hz 2 bytes Datum T_Pmp_2_Head (4,2,41,2)
+1/1 Hz 2 bytes Datum T_Rove_1 (4,2,43,2)
+1/1 Hz 2 bytes Datum T_Rove_2 (4,2,45,2)
+1/1 Hz 2 bytes Datum T_Rove_3 (4,2,47,2)
+1/1 Hz 1 bytes Datum SWStat (4,2,49,1)
+1/1 Hz 2 bytes Datum T_Rove_4 (4,3,33,2)
+1/1 Hz 2 bytes Datum T_Scb (4,3,35,2)
+1/1 Hz 2 bytes Datum T_Scb_Vlv_A (4,3,37,2)
+1/1 Hz 2 bytes Datum T_Vlv_UnScb_A (4,3,39,2)
+1/1 Hz 2 bytes Datum Z1_H_St (4,3,41,2)
+1/1 Hz 2 bytes Datum Z2_H_St (4,3,43,2)
+1/1 Hz 2 bytes Datum Z5_H_St (4,3,45,2)
+1/1 Hz 1 bytes Datum vl_bdT (4,3,47,1)
+1/1 Hz 1 bytes Datum vl_cpuT (4,3,48,1)
 -------End of PCM Definition-------
 

@@ -1,0 +1,9 @@
+PTRH {
+  HBox { +-; Title: "DACS PTRH"; -+ };
+  T1: (DACS_T1C,5)    C;
+  T2: (DACS_T2C,5)    C;
+  RH: (DACS_RHC,4)    %;
+  P:  (DACS_P,7)   Torr;
+  S:  (DACS_PTRHS,4) ;
+}
+

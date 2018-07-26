@@ -32,7 +32,7 @@ ROWS 10
   4 Vlv_Scb_A_Open_Close:DS813:2 Ozone:Vlv_Srb Status
   4 Scrub_FH_A_On_Off:DS813:3 Ozone:Vlv_Srb Status
   4 P_A Ozone:Flow Pressure
-  1 Flw_Out_A Ozone:Flow Rate
+# 1 Flw_Out_A Ozone:Flow Rate
   4 Pump_On_Off:DS813:7 Ozone:Flow Status
   1 T_Pmp_1_Motor Ozone:Flow Temp Motor
   1 T_Pmp_1_Head Ozone:Flow Temp Head
@@ -43,6 +43,8 @@ ROWS 10
   1 T_Rove_4 Ozone:Rove Temp 4 
   1 freemem Ozone:PDACS Memory
   1 CPU_Pct Ozone:PDACS CPU
-  1 Disk Ozone:PDACS CPU
+  1 Disk Ozone:PDACS Disk
+  1 vl_cpuT Ozone:PDACS CPU_T
+  1 vl_bdT  Ozone:PDACS CPU_T
   1 SWStat Ozone:PDACS SWStat
   

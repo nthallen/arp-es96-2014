@@ -1,12 +1,15 @@
 Input "pwrmon.tbl";
+Input "PTRH.tbl";
 
 Status {
   HBox { +-; Title: "Status"; -+ };
   HBox {
     { Freemem: (freemem,7) MB;
       CPU: (CPU_Pct,3) "%";
-      Disk: (Disk,5) "%";
+      cpuT: (vl_cpuT,3) C;
+      Bd_T: (vl_bdT,3)  C;
     }; |; {
+      Disk: (Disk,5) "%";
       SWStat: (SWStat,3); 
       Time: (flttime,9);
       MFCtr: (MFCtr,5);
@@ -49,9 +52,9 @@ Rove {
 {
   HBox { { [TempCont];
            [Valves];
-           [pwrmon] }; |;
-         { [Flow];
+           [pwrmon] }; |+;
+         { HBox { [Flow]; |; [PTRH] };
            [Rove] }
-      };
+       };
   [Status];
 }

@@ -1,0 +1,5 @@
+ 1 DACS_T1C Ozone:PTRH T
+ 1 DACS_T2C Ozone:PTRH T
+ 1 DACS_P   Ozone:PTRH P
+ 1 DACS_RHC Ozone:PTRH RH
+ 1 DACS_PTRHS Ozone:PTRH Status %.0lf

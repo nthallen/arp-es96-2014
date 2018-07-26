@@ -1,0 +1,29 @@
+%{
+  #include "ptrhm.h"
+  ptrhm DACS = ptrhm("DACS",0x200,0xBDC6,0x9F96,0x757D,0x6B0D,0x7D1D,0x6AE3);
+%}
+TM typedef unsigned char MS5607Db { text "%3d"; }
+TM typedef UINT PTRH_S { text " %04x"; }
+TM typedef double PTRHT_t { text "%5.1lf"; }
+TM typedef double SHT21RH_t { text "%4.1lf"; }
+TM typedef double PTRHP_t { text "%7.2lf"; }
+
+TM 1 Hz UINT DACS_T1;
+TM 1 Hz UINT DACS_RH;
+TM 1 Hz UINT DACS_T2a;
+TM 1 Hz MS5607Db DACS_T2b;
+TM 1 Hz UINT DACS_Pa;
+TM 1 Hz MS5607Db DACS_Pb;
+TM 1 Hz PTRH_S DACS_PTRHS;
+
+Group DACS ( DACS_T1, DACS_RH, DACS_T2a,
+    DACS_T2b, DACS_Pa, DACS_Pb, DACS_PTRHS ) {
+  DACS.acquire();
+  DACS_T1 = DACS.SHT21T();
+  DACS_RH = DACS.SHT21RH();
+  DACS_T2a = DACS.MS5607Ta();
+  DACS_T2b = DACS.MS5607Tb(); 
+  DACS_Pa = DACS.MS5607Pa();
+  DACS_Pb = DACS.MS5607Pb(); 
+  DACS_PTRHS = DACS.Status();
+}

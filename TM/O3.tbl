@@ -40,12 +40,11 @@ LED {
 }
 Flow {
   HBox { +-; Title: "Flow"; -+ };
-  Pressure: (P_A,7) Torr;
-# Flow: (Flw_Out_A,6) SLM;
+  Cell_P: (P_A,7) Torr;
+  DACS_P: (DACS_P,7) Torr;
   Pump: (Pump_On_Off_S,3);
-# Motor: (T_Pmp_1_Motor,7) C;
-# Head1: (T_Pmp_1_Head,7) C;
-# Head2: (T_Pmp_2_Head,7) C;
+  "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);
+  "Scb Vlv:" (Vlv_Scb_A_Open_Close_S,6);
 }
 
 Valves {
@@ -67,6 +66,6 @@ Rove {
 }
 {
   HBox {[Dtct]; |; [LED]};
-  HBox {[CellT]; |; { [Flow]; [Valves] } };
+  HBox {[CellT]; |; { [Flow] } };
   [Status];
 }
