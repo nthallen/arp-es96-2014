@@ -24,12 +24,6 @@ O3algo.cc
 O3algooui.c
 O3algooui.o
 O3algo.o
-O3engextcdf.oui
-O3engcdf.tmc
-O3engext.cc
-O3engextoui.c
-O3engextoui.o
-O3engext.o
 rawextcdf.oui
 rawcdf.tmc
 rawext.cc
@@ -48,6 +42,13 @@ O3cltoui.o
 O3cltnc.o
 O3cltncoui.c
 O3cltncoui.o
+O3engext.cdf
+O3engextcdf.oui
+O3engextcdf.tmc
+O3engext.cc
+O3engextoui.c
+O3engextoui.o
+O3engext.o
 O3tbl.tmc.dep
 O3tblnc.tmc.dep
 *.err
@@ -56,9 +57,9 @@ O3srvr
 O3disp
 O3dispnc
 O3algo
-O3engext
 rawext
 doit
 seroutext
 O3clt
 O3cltnc
+O3engext

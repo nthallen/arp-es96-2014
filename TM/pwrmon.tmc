@@ -30,11 +30,4 @@ TM 1 Hz PwrMon_I PM0I1; Address PM0I1 0x362;
 TM 1 Hz PwrMon_V PM0V1; Address PM0V1 0x364;
 TM 1 Hz PwrMon_I PM0I2; Address PM0I2 0x366;
 TM 1 Hz PwrMon_V PM0V2; Address PM0V2 0x368;
-TM 1 Hz PwrMon_S PM1Stat; Address PM1Stat 0x370;
 
-/* Select the appropriate channel for pumps. Using 1 here: */
-TM 1 Hz PwrMon_I PmpsI; Address PmpsI 0x372;
-TM 1 Hz PwrMon_V PmpsV; Address PmpsV 0x374;
-
-/* TM 1 Hz PwrMon_I PmpsI; Address PmpsI 0x376; */
-/* TM 1 Hz PwrMon_V PmpsV; Address PmpsV 0x378; */

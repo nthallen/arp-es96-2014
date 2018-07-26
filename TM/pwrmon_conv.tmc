@@ -16,19 +16,4 @@ PMOK PM0I2S; invalidate PM0I2S;
   { PM0I2S = (PM0Stat>>2)&1; Validate PM0I2S; }
 PMOK PM0V2S; invalidate PM0V2S;
   { PM0V2S = (PM0Stat>>3)&1; Validate PM0V2S; }
-PMTO PM1TO; invalidate PM1TO;
-  { PM1TO = (PM1Stat >> 4) & 1; Validate PM1TO; }
 
-/* Assign PmpsIS, PmpsVS to the appropriate channel:
-   I've used channel 1 here:
- */
-PMOK PmpsIS; invalidate PmpsIS;
-  { PmpsIS = (PM1Stat>>0)&1; Validate PmpsIS; }
-PMOK PmpsVS; invalidate PmpsVS;
-  { PmpsVS = (PM1Stat>>1)&1; Validate PmpsVS; }
-/*
-PMOK PmpsIS; invalidate PmpsIS;
-  { PmpsIS = (PM1Stat>>2)&1; Validate PmpsIS; }
-PMOK PmpsVS; invalidate PmpsVS;
-  { PmpsVS = (PM1Stat>>3)&1; Validate PmpsVS; }
-*/

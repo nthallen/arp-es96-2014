@@ -1,3 +1,8 @@
+#define PM0V2_Address 0x368
+#define PM0I2_Address 0x366
+#define PM0V1_Address 0x364
+#define PM0I1_Address 0x362
+#define PM0Stat_Address 0x360
 #define DS813_Address 0x813
 #define Z5_H_St_Address 0x408
 #define Z2_H_St_Address 0x40A

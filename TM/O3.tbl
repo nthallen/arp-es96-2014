@@ -1,11 +1,10 @@
 Status {
   HBox { +-; Title: "Status"; -+ };
-  Freemem: (freemem,7) MB;
-  CPU: (CPU_Pct,3) "%";
-  Disk: (Disk,5) "%";
-  SWStat: (SWStat,3); 
-  Time: (flttime,9);
-  MFCtr: (MFCtr,5);
+# Freemem: (freemem,7) MB;
+# CPU: (CPU_Pct,3) "%";
+# Disk: (Disk,5) "%";
+# SWStat: (SWStat,3); 
+  Time: (flttime,9) MFCtr: (MFCtr,5);
 }
 
 TempCont {
@@ -42,21 +41,23 @@ LED {
 Flow {
   HBox { +-; Title: "Flow"; -+ };
   Pressure: (P_A,7) Torr;
-  Flow: (Flw_Out_A,6) SLM;
+# Flow: (Flw_Out_A,6) SLM;
   Pump: (Pump_On_Off_S,3);
-  Motor: (T_Pmp_1_Motor,7) C;
-  Head1: (T_Pmp_1_Head,7) C;
-  Head2: (T_Pmp_2_Head,7) C;
+# Motor: (T_Pmp_1_Motor,7) C;
+# Head1: (T_Pmp_1_Head,7) C;
+# Head2: (T_Pmp_2_Head,7) C;
 }
+
 Valves {
-  HBox { +-; Title: "Valves & Scrubber"; -+ };
+# HBox { +-; Title: "Valves"; -+ };
   "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);
-  ""           (T_Vlv_UnScb_A,7) C;
+# ""           (T_Vlv_UnScb_A,7) C;
   "Scb Vlv:" (Vlv_Scb_A_Open_Close_S,6);
-  ""         (T_Scb_Vlv_A,7) C;
-  "Scb FH:" (Scrub_FH_A_On_Off_S,3);
-  Scb: (T_Scb,7) C;
+# ""         (T_Scb_Vlv_A,7) C;
+# "Scb FH:" (Scrub_FH_A_On_Off_S,3);
+# Scb: (T_Scb,7) C;
 }
+
 Rove {
   HBox { +-; Title: "Rove Temp"; -+ };
   R1: (T_Rove_1,7) C;
@@ -65,10 +66,7 @@ Rove {
   R4: (T_Rove_4,7) C;
 }
 {
-  HBox { {[TempCont];
-          [Valves]}; |; 
-         { HBox {[Dtct]; |; [LED]};
-           HBox {[CellT]; |; [Flow]} }; |;
-         { [Rove]; [Status] }   
-       }
+  HBox {[Dtct]; |; [LED]};
+  HBox {[CellT]; |; { [Flow]; [Valves] } };
+  [Status];
 }

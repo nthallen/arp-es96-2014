@@ -1,0 +1,107 @@
+%{ /* edf2ext.awk reading O3eng.cdf */
+  #include "csv_file.h"
+  #include "msg.h"
+  #include "tmctime.h"
+
+  #define Ct24_Long(x) (0xFFFFFF & *(TMLONG *)&x)
+  #define Ct24_Double(x) (double)Ct24_Long(x)
+  #define To_Double(x) (double)(x)
+
+  static double ext_delta = 0.;
+
+  csv_file O3eng_1("O3eng_1.csv", 24);
+  csv_file O3eng_4("O3eng_4.csv", 14);
+  void initialize(void) {
+    {
+      char *s;
+      s = getenv("EXT_DELTA");
+      if (s != NULL) {
+        ext_delta=atof(s);
+        msg(MSG, "Using Time Delta of %lf", ext_delta);
+      }
+    }
+    O3eng_1.init();
+    O3eng_1.init_col(0, "TO3eng_1", "%.3lf");
+    O3eng_1.init_col(1, "CPU_Pct");
+    O3eng_1.init_col(2, "CT_Inlet");
+    O3eng_1.init_col(3, "CT_Z1_Mir_A");
+    O3eng_1.init_col(4, "CT_Z2_Mir_A");
+    O3eng_1.init_col(5, "Disk");
+    O3eng_1.init_col(6, "Flw_Out_A");
+    O3eng_1.init_col(7, "SWStat");
+    O3eng_1.init_col(8, "T_Dtct_Hou_A");
+    O3eng_1.init_col(9, "T_LED_Hou_A");
+    O3eng_1.init_col(10, "T_Pmp_1_Head");
+    O3eng_1.init_col(11, "T_Pmp_1_Motor");
+    O3eng_1.init_col(12, "T_Pmp_2_Head");
+    O3eng_1.init_col(13, "T_Rove_1");
+    O3eng_1.init_col(14, "T_Rove_2");
+    O3eng_1.init_col(15, "T_Rove_3");
+    O3eng_1.init_col(16, "T_Rove_4");
+    O3eng_1.init_col(17, "T_Scb");
+    O3eng_1.init_col(18, "T_Scb_Vlv_A");
+    O3eng_1.init_col(19, "T_Vlv_UnScb_A");
+    O3eng_1.init_col(20, "Z1_H_St");
+    O3eng_1.init_col(21, "Z2_H_St");
+    O3eng_1.init_col(22, "Z5_H_St");
+    O3eng_1.init_col(23, "freemem");
+    O3eng_4.init();
+    O3eng_4.init_col(0, "TO3eng_4", "%.3lf");
+    O3eng_4.init_col(1, "DS813");
+    O3eng_4.init_col(2, "Dtct_A_c");
+    O3eng_4.init_col(3, "Dtct_Src_A_c");
+    O3eng_4.init_col(4, "P_A");
+    O3eng_4.init_col(5, "T_A_1");
+    O3eng_4.init_col(6, "T_A_2");
+    O3eng_4.init_col(7, "T_A_3");
+    O3eng_4.init_col(8, "T_A_4");
+    O3eng_4.init_col(9, "T_Cell_In_A");
+    O3eng_4.init_col(10, "T_Cell_Out_A");
+    O3eng_4.init_col(11, "T_Dtct_A");
+    O3eng_4.init_col(12, "T_Dtct_Src_A");
+    O3eng_4.init_col(13, "T_LED_A");
+  }
+%}
+TM INITFUNC initialize();
+{
+  O3eng_1.set_time(dtime()+ext_delta);
+  O3eng_1.set_col(1, text(CPU_Pct));
+  O3eng_1.set_col(2, text(CT_Inlet));
+  O3eng_1.set_col(3, text(CT_Z1_Mir_A));
+  O3eng_1.set_col(4, text(CT_Z2_Mir_A));
+  O3eng_1.set_col(5, text(Disk));
+  O3eng_1.set_col(6, text(Flw_Out_A));
+  O3eng_1.set_col(7, text(SWStat));
+  O3eng_1.set_col(8, text(T_Dtct_Hou_A));
+  O3eng_1.set_col(9, text(T_LED_Hou_A));
+  O3eng_1.set_col(10, text(T_Pmp_1_Head));
+  O3eng_1.set_col(11, text(T_Pmp_1_Motor));
+  O3eng_1.set_col(12, text(T_Pmp_2_Head));
+  O3eng_1.set_col(13, text(T_Rove_1));
+  O3eng_1.set_col(14, text(T_Rove_2));
+  O3eng_1.set_col(15, text(T_Rove_3));
+  O3eng_1.set_col(16, text(T_Rove_4));
+  O3eng_1.set_col(17, text(T_Scb));
+  O3eng_1.set_col(18, text(T_Scb_Vlv_A));
+  O3eng_1.set_col(19, text(T_Vlv_UnScb_A));
+  O3eng_1.set_col(20, text(Z1_H_St));
+  O3eng_1.set_col(21, text(Z2_H_St));
+  O3eng_1.set_col(22, text(Z5_H_St));
+  O3eng_1.set_col(23, text(freemem));
+}
+{
+  O3eng_4.set_time(dtime()+ext_delta);
+  O3eng_4.set_col(1, text(DS813));
+  O3eng_4.set_col(2, text(Dtct_A_c));
+  O3eng_4.set_col(3, text(Dtct_Src_A_c));
+  O3eng_4.set_col(4, text(P_A));
+  O3eng_4.set_col(5, text(T_A_1));
+  O3eng_4.set_col(6, text(T_A_2));
+  O3eng_4.set_col(7, text(T_A_3));
+  O3eng_4.set_col(8, text(T_A_4));
+  O3eng_4.set_col(9, text(T_Cell_In_A));
+  O3eng_4.set_col(10, text(T_Cell_Out_A));
+  O3eng_4.set_col(11, text(T_Dtct_A));
+  O3eng_4.set_col(12, text(T_Dtct_Src_A));
+  O3eng_4.set_col(13, text(T_LED_A));
+}
