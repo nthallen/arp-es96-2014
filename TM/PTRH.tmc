@@ -1,6 +1,6 @@
 %{
   #include "ptrhm.h"
-  ptrhm DACS = ptrhm("DACS",0x200,0xBDC6,0x9F96,0x757D,0x6B0D,0x7D1D,0x6AE3);
+  ptrhm DACS = ptrhm("DACS",0x200,0xB6A5,0x9E96,0x7106,0x673E,0x80F5,0x6C35);
 %}
 TM typedef unsigned char MS5607Db { text "%3d"; }
 TM typedef UINT PTRH_S { text " %04x"; }
