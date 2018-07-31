@@ -1,0 +1,13 @@
+Moduledef Telemetry {
+  Simple module to distribute the telemetry receiving module.
+}
+
+DISTRIB = @MODDIR@/../hcl_serin
+%%
+.PHONY : clean-Telemetry
+@MODDIR@/../hcl_serin :
+	cd @MODDIR@/.. && make
+clean-dist : clean-Telemetry
+clean-Telemetry :
+	cd @MODDIR@/.. && make clean
+

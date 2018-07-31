@@ -1,0 +1,18 @@
+<package> serin
+<include> msg dc cic
+<include> "serin.h"
+<follow> msg dc
+
+<opts> "aAP:d:b:"
+<sort>
+	-A autostart fast forward
+	-a autostart regulated
+	-b baud : set serial baud rate [2400]
+	-d path : specify serial device or simulation file
+	-P path : specify base path for scan files [.]
+<init>
+  serin_init(argc, argv);
+
+<package> msghdr_default
+<vars>
+  char *msg_hdr_default = "serin";

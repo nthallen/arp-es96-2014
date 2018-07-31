@@ -1,0 +1,15 @@
+o3sicmd.cc
+o3sicmd.dat
+o3siclt.o
+o3sicltoui.c
+o3sicltoui.o
+o3sicltnc.o
+o3sicltncoui.c
+o3sicltncoui.o
+o3sisrvr.o
+o3sisrvroui.c
+o3sisrvroui.o
+*.err
+o3siclt
+o3sicltnc
+o3sisrvr
