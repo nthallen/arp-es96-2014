@@ -1,5 +1,10 @@
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 #include "uplink_rcvr.h"
 #include "cmdalgo.h"
+#include "nortlib.h"
+#include "oui.h"
 
 const char *uplink_port;
 const char *uplink_addr;
@@ -15,7 +20,7 @@ const char *uplink_addr;
  * process the command the same as in flight.
  */
 UplinkRcvrSer::UplinkRcvrSer(const char *port, const char *addr) :
-          Ser_Sel(port, O_RD|O_NONBLOCK, 80), addr(addr) {
+          Ser_Sel(port, O_RDONLY|O_NONBLOCK, 80) {
   // Ser_Sel's init will abort if open fails
   // Verify that addr is non-zero and consists of
   // exactly 2 hex digits
@@ -40,13 +45,14 @@ UplinkRcvrSer::UplinkRcvrSer(const char *port, const char *addr) :
   // Ser_Sel's init sets flags to Sel_Read
 }
 
+UplinkRcvrSer::~UplinkRcvrSer() {}
+
 /**
  * At the moment, just report anything returned
  * from the CSBF equipment
  */
 int UplinkRcvrSer::ProcessData(int flag) {
   if (fillbuf()) return 1;
-  int n_reported = 0;
   cp = 0;
   while (cp < nc) {
     unsigned short SWStat;
@@ -62,8 +68,8 @@ int UplinkRcvrSer::ProcessData(int flag) {
           not_str(" ") ||
           not_hex(port_addr) ||
           not_str("K") ||
-          not_str(&buf[frame_start], 9) ||
-          not_str(&buf[frame_start], 9) ||
+          not_str((char *)&buf[frame_start], 9) ||
+          not_str((char *)&buf[frame_start], 9) ||
           not_str("\r\n")) {
         if (cp < nc) {
           consume(cp);
@@ -86,7 +92,7 @@ int UplinkRcvrSer::ProcessData(int flag) {
     } else {
       SWStat = buf[cp++];
     }
-    ci_sendfcmd(0, 'SWStat Set %d\n', SWStat);
+    ci_sendfcmd(0, "SW Status Set %d\n", SWStat);
   }
   consume(nc);
   update_termios();
@@ -106,12 +112,12 @@ int UplinkRcvrSer::ProcessData(int flag) {
 void UplinkRcvrSer::update_termios() {
   // int cur_min = pending->req_sz + pending->min - nc;
   if (nc) {
-    if (TO->Expired()) {
+    if (TO.Expired()) {
       report_err("Timeout");
       nc = cp = 0;
-      TO->Clear();
+      TO.Clear();
     } else {
-      TO->Set(0,200);
+      TO.Set(0,200);
     }
   }
   int cur_min = addr ? 29 - nc : 1;
@@ -125,7 +131,7 @@ void UplinkRcvrSer::update_termios() {
       nl_error(2, "Error from tcsetattr: %s", strerror(errno));
     }
   }
-  if (TO->Set()) {
+  if (TO.Set()) {
     flags |= Selector::Sel_Timeout;
   } else {
     flags &= ~Selector::Sel_Timeout;
@@ -133,7 +139,7 @@ void UplinkRcvrSer::update_termios() {
 }
 
 Timeout *UplinkRcvrSer::GetTimeout() {
-  return TO->Set() ? &TO : 0;
+  return TO.Set() ? &TO : 0;
 }
 
 int main(int argc, char **argv) {

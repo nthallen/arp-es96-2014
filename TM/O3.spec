@@ -24,7 +24,7 @@ colbase = /usr/local/share/huarp/ptrhm_col.cc
 colbase = AI_col.tmc
 colbase = adc_col.tmc
 colbase = /usr/local/share/huarp/DACS_ID.tmc
-tmcbase = /usr/local/share/huarp/vl_temp_col.tmc
+colbase = /usr/local/share/huarp/vl_temp_col.tmc
 
 swsbase = O3.sws
 

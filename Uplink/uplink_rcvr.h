@@ -6,6 +6,7 @@ extern const char *uplink_addr;
 
 #ifdef __cplusplus
 #include <SerSelector.h>
+#include <termios.h>
 
 class UplinkRcvrSer : public Ser_Sel {
   public:
