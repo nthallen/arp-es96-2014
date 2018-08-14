@@ -10,6 +10,7 @@ o3sisrvr.o
 o3sisrvroui.c
 o3sisrvroui.o
 *.err
+Makefile
 o3siclt
 o3sicltnc
 o3sisrvr

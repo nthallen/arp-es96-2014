@@ -422,12 +422,12 @@ void serin_t::process_row(const unsigned char *row) {
   }
 }
 
-uint16_t serin_t::mfcbytes(uint16_t mfc) {
-  uint16_t m = mfc>>8;
-  uint16_t l = mfc & 0xFF;
-  uint16_t L1 = tmi(nbminf)-3;
-  return((m*256+l+1)*L1 - (m+1)*sizeof(scan_hdr_t));
-}
+// uint16_t serin_t::mfcbytes(uint16_t mfc) {
+//   uint16_t m = mfc>>8;
+//   uint16_t l = mfc & 0xFF;
+//   uint16_t L1 = tmi(nbminf)-3;
+//   return((m*256+l+1)*L1 - (m+1)*sizeof(scan_hdr_t));
+// }
 
 // Now I need to set every 32-bit word from first_byte to last_byte
 // to NAN32.

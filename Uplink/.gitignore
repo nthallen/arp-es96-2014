@@ -1,4 +1,5 @@
+*.o
 uplink
-uplink.o
+uplink_rcvr
 uplinkoui.c
-uplinkoui.o
+uplink_rcvroui.c

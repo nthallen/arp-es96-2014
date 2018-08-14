@@ -38,7 +38,7 @@ class serin_t : public data_generator {
     // void process_scan_row(const unsigned char *row);
     void update_termios(int cur_min);
     void dump_bytes(int lvl, int start, int end);
-    uint16_t mfcbytes(uint16_t mfc);
+    // uint16_t mfcbytes(uint16_t mfc);
     // void write_scan_file();
     // void nan_fill(uint16_t first_byte, uint16_t last_byte);
     // mlf_def_t *mlf;
