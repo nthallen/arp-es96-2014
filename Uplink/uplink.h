@@ -19,7 +19,7 @@ class UplinkSer : public Ser_Sel {
 
 class UplinkCmd : public Cmd_Selectee {
   public:
-    inline UplinkCmd(UplinkSer *US) : Cmd_Selectee("cmd/uplink"), US(US) {};
+    inline UplinkCmd(UplinkSer *US) : Cmd_Selectee("cmd/uplink", 80), US(US) {};
     ~UplinkCmd();
     int ProcessData(int flag);
   private:

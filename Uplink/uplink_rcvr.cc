@@ -27,14 +27,14 @@ UplinkRcvrSer::UplinkRcvrSer(const char *port, const char *addr) :
 
   if (addr == 0) {
     this->addr = 0;
-    setup(1200, 8, 'N', 1, 1, 1);
+    setup(1200, 8, 'n', 1, 1, 1);
   } else {
     if ((!isxdigit(addr[0])) ||
         (!isxdigit(addr[1])) ||
         (addr[2] != '\0'))
       nl_error(3, "Invalid instrument address");
     this->addr = strtoul(addr, 0, 16);
-    setup(1200, 8, 'N', 1, 29, 1);
+    setup(1200, 8, 'n', 1, 29, 1);
   }
 
   flush_input();

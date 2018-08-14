@@ -18,11 +18,12 @@ int UplinkCmd::ProcessData(int flag) {
   nc = cp = 0;
   fillbuf();
   if (nc == 0) return 1; // Implicit quit command
+  cmd = 0; // due to bug in not_hex()
   if (not_str("W:") || not_hex(cmd) || not_str("\n")) {
     report_err("Syntax error at column %d", cp);
   } else {
     if (cmd >= 0x100) {
-      report_err("Command exceeds byte width");
+      report_err("Command %u exceeds byte width", cmd);
     } else {
       US->transmit(cmd);
       report_ok();
@@ -44,7 +45,7 @@ UplinkSer::UplinkSer(const char *port, const char *addr) :
       (addr[2] != '\0'))
     nl_error(3, "Invalid instrument address");
 
-  setup(1200, 8, 'N', 1, 1, 1);
+  setup(1200, 8, 'n', 1, 1, 1);
   flush_input();
   // Ser_Sel's init sets flags to Sel_Read
 }
@@ -81,7 +82,8 @@ void UplinkSer::transmit(unsigned short val) {
   int nchars = snprintf(obuf, 35,
     "S00%02X %sKS00%02X %sKS00%02X %sK\r\n",
       val, addr, val, addr, val, addr);
-  nl_assert(nchars == 30);
+  nl_assert(nchars == 29);
+  nl_error(MSG_DBG(0), "Tx: %s", ascii_escape(obuf));
   nchars = write(fd, obuf, 29);
   if (nchars == -1) {
     nl_error(3, "Error %d (%s) from uplink port",
