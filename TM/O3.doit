@@ -1,5 +1,19 @@
-display O3disp -C $FlightNode
+display O3disp
+serin serin -a -d /dev/serusb1
+
 client O3clt
+client [SI] hclsiclt
+
+server [SI] cmd/server o3sisrvr
+server [!SI&!screen] cmd/server playbacksrvr
+server [SI] - uplink -p /dev/serusb2 -a 26 -v
+server [!screen] - phrtg
+
+extraction [!screen] O3rtgext
+# Uncomment the following line for testing via playback
+# extraction [PB] seroutext -d /dev/serusb1
+extraction [SI] lgr -N `mlf_find LOG`
+
 memo
 batchfile interact
-phrtg
+# phrtg

@@ -34,6 +34,8 @@ genuibase = PTRH.genui
 extbase = adc_conv.tmc
 extbase = PTRH_conv.tmc
 
+DISTRIB = SerIn/o3sisrvr SerIn/o3siclt SerIn/o3sicltnc
+DISTRIB = ../Uplink/uplink ../Uplink/uplink_rcvr
 SCRIPT = interact dccc.dccc
 
 TGTDIR = $(TGTNODE)/home/ozone
@@ -42,9 +44,11 @@ O3col : -lsubbus
 O3srvr : -lsubbus
 O3disp : dstat.tmc adc_conv.tmc pwrmon_conv.tmc \
            /usr/local/share/huarp/flttime.tmc \
-           PTRH_conv.tmc \
-           O3.tbl O3_2.tbl rtg.tmc \
+           PTRH_conv.tmc HUSCE_CT.tmc \
+           O3.tbl O3_2.tbl \
            /usr/local/share/oui/cic.oui
+O3rtgext : adc_conv.tmc pwrmon_conv.tmc PTRH_conv.tmc \
+           HUSCE_CT.tmc rtg.tmc
 O3algo : O3.tma O3.sws
 rawext : raw.cdf
 
@@ -55,3 +59,33 @@ seroutext : SerOut.cc SerOut.oui SerOut.tmc
 COLFLAGS=-Haddress.h
 address.h : O3col.cc
 O3srvr.o : address.h
+
+.PHONY : all-SerIn clean-SerIn
+all-dist : all-SerIn
+all-SerIn :
+	cd SerIn && make
+SerIn/o3sisrvr SerIn/o3siclt SerIn/o3sicltnc :
+	cd SerIn && make
+clean-dist : clean-SerIn
+clean-SerIn :
+	cd SerIn && make clean
+
+.PHONY : all-Uplink clean-Uplink
+all-dist : all-Uplink
+all-Uplink :
+	cd ../Uplink && make
+../Uplink/uplink ../Uplink/uplink_rcvr :
+	cd ../Uplink && make
+clean-dist : clean-Uplink
+clean-Uplink :
+	cd ../Uplink && make clean
+
+model_atmos.o : model_atmos.h
+TM_lowpass.o : TM_lowpass.h
+
+distribution : distribution-serin
+distribution-serin :
+	@[ -d $(TGTDIR)/SerIn ] || mkdir $(TGTDIR)/SerIn
+	@for i in VERSION bin doit src; do ln -fs ../$$i $(TGTDIR)/SerIn/$$i; done
+	@distribute $(FORCE) $(TGTDIR)/SerIn SerIn/Experiment.config
+
