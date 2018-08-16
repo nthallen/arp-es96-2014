@@ -36,6 +36,7 @@ extbase = PTRH_conv.tmc
 
 DISTRIB = SerIn/o3sisrvr SerIn/o3siclt SerIn/o3sicltnc
 DISTRIB = ../Uplink/uplink ../Uplink/uplink_rcvr
+DISTRIB = ../Telemetry/serin
 SCRIPT = interact dccc.dccc
 
 TGTDIR = $(TGTNODE)/home/ozone
@@ -59,6 +60,8 @@ seroutext : SerOut.cc SerOut.oui SerOut.tmc
 COLFLAGS=-Haddress.h
 address.h : O3col.cc
 O3srvr.o : address.h
+model_atmos.o : model_atmos.h
+TM_lowpass.o : TM_lowpass.h
 
 .PHONY : all-SerIn clean-SerIn
 all-dist : all-SerIn
@@ -80,8 +83,16 @@ clean-dist : clean-Uplink
 clean-Uplink :
 	cd ../Uplink && make clean
 
-model_atmos.o : model_atmos.h
-TM_lowpass.o : TM_lowpass.h
+.PHONY : all-Telemetry clean-Telemetry
+all-dist : all-Telemetry
+all-Telemetry :
+	cd ../Telemetry && make
+../Telemetry/serin :
+	cd ../Telemetry && make
+clean-dist : clean-Telemetry
+clean-Telemetry :
+	cd ../Telemetry && make clean
+
 
 distribution : distribution-serin
 distribution-serin :

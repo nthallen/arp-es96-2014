@@ -1,4 +1,4 @@
-# Makefile Generated Thu Aug 16 10:53:33 MDT 2018
+# Makefile Generated Thu Aug 16 13:52:22 MDT 2018
 MNC=O3
 SPECFILE=O3.spec
 PCMFILE=O3.pcm
@@ -41,7 +41,8 @@ TGT=O3col O3srvr O3disp O3dispnc O3rtgext O3algo rawext doit
 TGT+=seroutext O3clt O3cltnc O3engext
 IGNORE=
 DISTRIB=SerIn/o3sisrvr SerIn/o3siclt SerIn/o3sicltnc
-DISTRIB+=../Uplink/uplink ../Uplink/uplink_rcvr O3.pcm tm.dac
+DISTRIB+=../Uplink/uplink ../Uplink/uplink_rcvr ../Telemetry/serin
+DISTRIB+=O3.pcm tm.dac
 IDISTRIB=Experiment.config VERSION doit
 SRCDIST=O3.tbl O3_2.tbl O3.tma /usr/local/share/huarp/freemem.tmc
 SRCDIST+=base.tmc /usr/local/share/huarp/cpu_usage.tmc
@@ -252,6 +253,8 @@ $(IGNOREFILE) : Makefile
 COLFLAGS=-Haddress.h
 address.h : O3col.cc
 O3srvr.o : address.h
+model_atmos.o : model_atmos.h
+TM_lowpass.o : TM_lowpass.h
 
 .PHONY : all-SerIn clean-SerIn
 all-dist : all-SerIn
@@ -273,8 +276,16 @@ clean-dist : clean-Uplink
 clean-Uplink :
 	cd ../Uplink && make clean
 
-model_atmos.o : model_atmos.h
-TM_lowpass.o : TM_lowpass.h
+.PHONY : all-Telemetry clean-Telemetry
+all-dist : all-Telemetry
+all-Telemetry :
+	cd ../Telemetry && make
+../Telemetry/serin :
+	cd ../Telemetry && make
+clean-dist : clean-Telemetry
+clean-Telemetry :
+	cd ../Telemetry && make clean
+
 
 distribution : distribution-serin
 distribution-serin :

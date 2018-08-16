@@ -19,9 +19,15 @@ Status {
 
 TempCont {
   HBox { +-; Title: "Temp Control"; -+ };
-  Z1: (Z1_HC_A_S,3) (Z1_H_St,7) (CT_Z1_Mir_A,7) V;
-  Z2: (Z2_HC_A_S,3) (Z2_H_St,7) (CT_Z2_Mir_A,7) V;
-  Z5: (Z5_HC_In_S,3) (Z5_H_St,7) (CT_Inlet,7) V;
+  ""          >"V"<          >"C"<;
+  Z1:     (CT_Z1_Mir_A,7) (CT_Z1_Mir_AT,7);
+  " set:" (Z1_H_St,7)     (Z1_H_StT,7);
+  HBox{ "   "; -; "   " };
+  Z2:     (CT_Z2_Mir_A,7) (CT_Z2_Mir_AT,7);
+  " set:" (Z2_H_St,7)     (Z2_H_StT,7);
+  HBox{ "   "; -; "   " };
+  Z2:     (CT_Inlet,7)    (CT_InletT,7);
+  " set:" (Z5_H_St,7)     (Z5_H_StT,7);
 }
 
 Flow {
@@ -53,7 +59,8 @@ Rove {
   HBox { { [TempCont];
            [Valves];
            [pwrmon] }; |+;
-         { HBox { [Flow]; |; [PTRH] };
+         { [Flow];
+           [PTRH];
            [Rove] }
        };
   [Status];

@@ -5,7 +5,35 @@ ci_sendfcmd(2, "PhRTG Datum CPU_Pct %lu %s\n", itime(), text(CPU_Pct));
 ci_sendfcmd(2, "PhRTG Datum adc_n_avg %.2lf %s\n", dtime(), text(adc_n_avg));
 ci_sendfcmd(2, "PhRTG Datum Dtct_A %.2lf %s\n", dtime(), text(Dtct_A_c));
 ci_sendfcmd(2, "PhRTG Datum Dtct_Src_A %.2lf %s\n", dtime(), text(Dtct_Src_A_c));
-ci_sendfcmd(2, "PhRTG Datum T_Cell_In_A %.2lf %s\n", dtime(), text(T_Cell_In_A));
-ci_sendfcmd(2, "PhRTG Datum P_A %.2lf %s\n", dtime(), text(P_A));
-ci_sendfcmd(2, "PhRTG Datum Z2_H_St %.2lf %s\n", dtime(), text(Z2_H_St));
-ci_sendfcmd(2, "PhRTG Datum Z2_H_V %.2lf %s\n", dtime(), text(CT_Z2_Mir_A));
+
+ci_sendfcmd(2, "PhRTG Datum Cell_T %.2lf %.2lf %.2lf %.2lf %.2lf\n",
+  dtime(), convert(T_A_1), convert(T_A_2), convert(T_A_3), convert(T_A_4));
+ci_sendfcmd(2, "PhRTG Datum Cell_P %.2lf %s\n", dtime(), text(P_A));
+ci_sendfcmd(2, "PhRTG Datum DACS_P %.2lf %s\n", dtime(), text(DACS_P));
+
+
+ci_sendfcmd(2, "PhRTG Datum Z1_H %.2lf %.2lf %.2lf\n", dtime(),
+        convert(Z1_H_StT), convert(CT_Z1_Mir_AT));
+ci_sendfcmd(2, "PhRTG Datum Z2_H %.2lf %.2lf %.2lf\n", dtime(),
+        convert(Z2_H_StT), convert(CT_Z2_Mir_AT));
+ci_sendfcmd(2, "PhRTG Datum Z5_H %.2lf %.2lf %.2lf\n", dtime(),
+        convert(Z5_H_StT), convert(CT_InletT));
+
+ci_sendfcmd(2, "PhRTG Datum T_Scb %.2lf %s\n", dtime(), text(T_Scb));
+
+ci_sendfcmd(2, "PhRTG Datum Motor_T %.2lf %.2lf %.2lf %.2lf\n", dtime(),
+        convert(T_Pmp_1_Motor), convert(T_Pmp_1_Head),
+        convert(T_Pmp_2_Head));
+
+ci_sendfcmd(2, "PhRTG Datum DACS_T %.2lf %.2lf %.2lf\n", dtime(),
+        convert(DACS_T1C), convert(DACS_T2C));
+
+ci_sendfcmd(2, "PhRTG Datum Rover_T %.2lf %.2lf %.2lf %.2lf %.2lf\n",
+        dtime(), convert(T_Rove_1), convert(T_Rove_2),
+        convert(T_Rove_3), convert(T_Rove_4));
+
+ci_sendfcmd(2, "PhRTG Datum CPU_T %.2lf %u %u\n", dtime(),
+        convert(vl_cpuT), convert(vl_bdT));
+
+ci_sendfcmd(2, "PhRTG Datum PM_V %.2lf %s\n", dtime(), text(PM0V2));
+ci_sendfcmd(2, "PhRTG Datum PM_I %.2lf %s\n", dtime(), text(PM0I2));

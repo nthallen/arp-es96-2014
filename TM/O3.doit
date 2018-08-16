@@ -2,7 +2,7 @@ display O3disp
 serin serin -a -d /dev/serusb1
 
 client O3clt
-client [SI] hclsiclt
+client [SI] o3siclt
 
 server [SI] cmd/server o3sisrvr
 server [!SI&!screen] cmd/server playbacksrvr
