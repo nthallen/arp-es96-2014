@@ -1,3 +1,6 @@
+%{
+  #include "tmctime.h"
+%}
 ci_sendfcmd(2, "PhRTG Datum CPU_Pct %lu %s\n", itime(), text(CPU_Pct));
 ci_sendfcmd(2, "PhRTG Datum adc_n_avg %.2lf %s\n", dtime(), text(adc_n_avg));
 ci_sendfcmd(2, "PhRTG Datum Dtct_A %.2lf %s\n", dtime(), text(Dtct_A_c));

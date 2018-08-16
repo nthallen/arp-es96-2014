@@ -22,6 +22,10 @@ O3dispnc.cc
 O3dispncoui.c
 O3dispncoui.o
 O3dispnc.o
+O3rtgext.cc
+O3rtgextoui.c
+O3rtgextoui.o
+O3rtgext.o
 O3sws.tma
 O3algoa.tmc
 O3algo.cc
@@ -62,6 +66,7 @@ O3col
 O3srvr
 O3disp
 O3dispnc
+O3rtgext
 O3algo
 rawext
 doit

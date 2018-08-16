@@ -34,6 +34,8 @@ TM typedef AI16 AI16_5V { text "%7.4lf"; convert VOLTS; }
 TM typedef AI16_5V AI_10SLM { text "%6.3lf"; convert SLM; }
  Calibration (AI_10SLM, SLM) { 6144, 0, 30720, 10 } 
 
+TM typedef AI16 CT_t { text "%7.2lf"; convert CELCIUS; }
+
 TM 4 Hz UINT MFCtr, Synch;
 
 TM 1 Hz freemem_t freemem;
@@ -57,6 +59,7 @@ TM typedef unsigned short AO
     0, 0,
     65536, 10
   }
+TM typedef AO CTSP_t { text "%7.2lf"; convert CELCIUS; }
 
 TM typedef unsigned char DStat {
   text "%3d"; Collect x = sbrba(x.address);
