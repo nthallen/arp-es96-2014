@@ -1,5 +1,5 @@
 function fig = gO3op(varargin);
 % gO3op(...)
-% Power
-ffig = ne_group(varargin,'Power','pO3opv','pO3opc','pO3ops');
+% Pump
+ffig = ne_group(varargin,'Pump','pO3ops','pO3opt');
 if nargout > 0 fig = ffig; end

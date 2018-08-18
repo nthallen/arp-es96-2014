@@ -1,9 +1,5 @@
 Status {
   HBox { +-; Title: "Status"; -+ };
-# Freemem: (freemem,7) MB;
-# CPU: (CPU_Pct,3) "%";
-# Disk: (Disk,5) "%";
-# SWStat: (SWStat,3); 
   Time: (flttime,9) MFCtr: (MFCtr,5);
 }
 
@@ -25,29 +21,24 @@ CellT {
 Dtct {
   HBox { +-; Title: "Detector"; -+ };
   "Raw I:" (Dtct_A_c,10) V;
-  Housing: (DetHT,7) C;
+  DetHT:   (DetHT,7) C;
   adc_n_avg: (adc_n_avg,3);
   adc_err:  (adc_err,3);
 }
 
 LED {
   HBox { +-; Title: "LED"; -+ };
-  "Raw I:" (Dtct_Src_A_c,10) V;
-  Status: (LED_A_On_Off,3);
-  Dtct: (T_Dtct_Src_A,7) C;
-  LED: (LED_T,7) C;
+# "Raw I:" (Dtct_Src_A_c,10) V;
+  Status:  (LED_A_On_Off,3);
+  Dtct:    (T_Dtct_Src_A,7) C;
+  LED:     (LED_T,7) C;
 }
 
 Flow {
   HBox { +-; Title: "Flow"; -+ };
   Cell_P:  (P_A,7) Torr;
   DACS_P:  (DACS_P,7) Torr;
-  IBlkT:   (IBlkT,7) C;
-  OPltT:   (OPltT,7) C;
-  CellP_T: (CellP_T,7) C;
-  CellOutT: (CellOutT,7) C;
   Pump:    (Pump_On_Off_S,3);
-  PmpMotT: (PmpMotT,7) C;
   "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);
   "Scb Vlv:"   (Vlv_Scb_A_Open_Close_S,6);
 }

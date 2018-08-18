@@ -1,9 +1,9 @@
- 1 PM0V1  Ozone:Power Voltage
+#1 PM0V1  Ozone:Power Voltage
  1 PM0V2  Ozone:Power Voltage
- 1 PM0I1  Ozone:Power Current
+#1 PM0I1  Ozone:Power Current
  1 PM0I2  Ozone:Power Current
- 1 PM0I1_S:PM0Stat:0  Ozone:Power Status
+#1 PM0I1_S:PM0Stat:0  Ozone:Power Status
  1 PM0I2_S:PM0Stat:2  Ozone:Power Status
- 1 PM0TO_S:PM0Stat:4  Ozone:Power Status
- 1 PM0V1_S:PM0Stat:1  Ozone:Power Status
+#1 PM0V1_S:PM0Stat:1  Ozone:Power Status
  1 PM0V2_S:PM0Stat:3  Ozone:Power Status
+ 1 PM0TO_S:PM0Stat:4  Ozone:Power Status

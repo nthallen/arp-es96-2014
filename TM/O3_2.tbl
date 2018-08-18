@@ -32,10 +32,7 @@ TempCont {
 
 Flow {
   HBox { +-; Title: "Flow"; -+ };
-  Pressure: (P_A,7) Torr;
-  IBlkT: (IBlkT,7) C;
-  OPltT: (OPltT,7) C;
-  CellP_T: (CellP_T,7) C;
+  Cell_P: (P_A,7) Torr;
   Pump:  (Pump_On_Off_S,3);
   Motor: (PmpMotT) C;
   Head1: (Pmp1HeadT,7) C;
@@ -50,18 +47,23 @@ Valves {
   "Scb T:"     (T_Scb,7) C;
 }
 
-Rove {
-  HBox { +-; Title: "Rove Temp"; -+ };
-  R4: (T_Rove_4,7) C;
+Temps {
+  HBox { +-; Title: "Temps"; -+ };
+  IBlkT: (IBlkT,7) C;
+  OPltT: (OPltT,7) C;
+  CellP_T: (CellP_T,7) C;
+  CellOutT: (CellOutT,7) C;
 }
 
 {
   HBox { { [TempCont];
-           [Valves];
-           [pwrmon] }; |+;
-         { [Flow];
+           [Temps];
+           [pwrmon]
+         }; |+; {
+           [Flow];
            [PTRH];
-           [Rove] }
+           [Valves];
+         }
        };
   [Status];
 }
