@@ -13,8 +13,8 @@ State Scrub_Idle {
 }
 State Scrub_Start {
   > command vlv_unScb_A_Open_Close open
-  > command vlv_Scb_A_Open_Close close
-  +15 > command vlv_Scb_A_Open_Close open
+  > command vlv_Scb_A_Open_Close open
+  +15 > command vlv_Scb_A_Open_Close close
       > command vlv_unScb_A_Open_Close close
   +8  validate Scrub_Start;
 }
