@@ -6,7 +6,7 @@ client [SI] o3siclt
 
 server [SI] cmd/server o3sisrvr
 server [!SI&!screen] cmd/server playbacksrvr
-server [SI] - uplink -p /dev/serusb2 -a 26 -v
+server [SI] - uplink -p /dev/serusb2 -a 21 -b 02 -v
 server [!screen] - phrtg
 
 extraction [!screen] O3rtgext

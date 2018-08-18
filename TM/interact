@@ -8,6 +8,8 @@
   Launch dccc dccc -f $TMBINDIR/dccc.dccc
   Launch DG/cmd O3col
   Launch cmd/server O3srvr
+  Launch - uplink_rcvr -P /dev/ser2
   Launch - lgr -N `mlf_find LOG`
+  Launch - seroutext -b 2400
   Launch - tmdf
   Launch - O3algo -v
