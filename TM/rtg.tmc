@@ -22,15 +22,11 @@ ci_sendfcmd(2, "PhRTG Datum Z5_H %.2lf %.2lf %.2lf\n", dtime(),
 ci_sendfcmd(2, "PhRTG Datum T_Scb %.2lf %s\n", dtime(), text(T_Scb));
 
 ci_sendfcmd(2, "PhRTG Datum Motor_T %.2lf %.2lf %.2lf %.2lf\n", dtime(),
-        convert(T_Pmp_1_Motor), convert(T_Pmp_1_Head),
-        convert(T_Pmp_2_Head));
+        convert(PmpMotT), convert(Pmp1HeadT),
+        convert(Pmp2HeadT));
 
 ci_sendfcmd(2, "PhRTG Datum DACS_T %.2lf %.2lf %.2lf\n", dtime(),
         convert(DACS_T1C), convert(DACS_T2C));
-
-ci_sendfcmd(2, "PhRTG Datum Rover_T %.2lf %.2lf %.2lf %.2lf %.2lf\n",
-        dtime(), convert(T_Rove_1), convert(T_Rove_2),
-        convert(T_Rove_3), convert(T_Rove_4));
 
 ci_sendfcmd(2, "PhRTG Datum CPU_T %.2lf %u %u\n", dtime(),
         convert(vl_cpuT), convert(vl_bdT));

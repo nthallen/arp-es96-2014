@@ -80,28 +80,28 @@ TM 4 Hz AI_T1M250KU T_A_1; Address T_A_1 0xC24;
 TM 4 Hz AI_T1M250KU T_A_2; Address T_A_2 0xC44;
 TM 4 Hz AI_T1M250KU T_A_3; Address T_A_3 0xC64;
 TM 4 Hz AI_T1M250KU T_A_4; Address T_A_4 0xC84;
-TM 4 Hz AI_T30K T_LED_A; Address T_LED_A 0xC42;
+TM 4 Hz AI_T30K CellP_T; Address CellP_T 0xC42;
 TM 4 Hz AI_T30K T_Dtct_Src_A; Address T_Dtct_Src_A 0xC60; 
-TM 4 Hz AI_T30K T_Dtct_A; Address T_Dtct_A 0xCA6; 
+/* TM 4 Hz AI_T30K T_Dtct_A; Address T_Dtct_A 0xCA6; */
 TM 1 Hz AI16 CT_Inlet; Address CT_Inlet 0xC80;
 TM 1 Hz AI_T30K T_Scb; Address T_Scb 0xC20;
-TM 1 Hz AI_T30K T_Vlv_UnScb_A; Address T_Vlv_UnScb_A 0xCE6;
-TM 1 Hz AI_T30K T_Scb_Vlv_A; Address T_Scb_Vlv_A 0xC08;
-TM 1 Hz AI_T30K T_Pmp_1_Motor; Address T_Pmp_1_Motor 0xCA2;
-TM 1 Hz AI_T30K T_Pmp_1_Head; Address T_Pmp_1_Head 0xCA0;
-TM 1 Hz AI_T30K T_Pmp_2_Head; Address T_Pmp_2_Head 0xCE2;
-TM 1 Hz AI_T30K T_Rove_1; Address T_Rove_1 0xCC0;
-TM 1 Hz AI_T30K T_Rove_2; Address T_Rove_2 0xCE0;
-TM 1 Hz AI_T30K T_Rove_3; Address T_Rove_3 0xC02;
-TM 1 Hz AI_T30K T_Rove_4; Address T_Rove_4 0xCC2;
+/* TM 1 Hz AI_T30K T_Vlv_UnScb_A; Address T_Vlv_UnScb_A 0xCE6; */
+/* TM 1 Hz AI_T30K T_Scb_Vlv_A; Address T_Scb_Vlv_A 0xC08; */
+TM 1 Hz AI_T30K PmpPltT; Address PmpPltT 0xCA2;
+TM 1 Hz AI_T30K Pmp1HeadT; Address Pmp1HeadT 0xCA0;
+TM 1 Hz AI_T30K Pmp2HeadT; Address Pmp2HeadT 0xCE2;
+TM 1 Hz AI_T30K DetHT; Address DetHT 0xCC0;
+TM 1 Hz AI_T30K LED_T; Address LED_T 0xCE0;
+TM 1 Hz AI_T30K IBlkT; Address IBlkT 0xC02;
+TM 1 Hz AI_T30K OPltT; Address OPltT 0xCC2;
 TM 4 Hz P500Torr P_A; Address P_A 0xCE4;
-TM 1 Hz AI_T30K T_LED_Hou_A; Address T_LED_Hou_A 0xC62;
-TM 1 Hz AI_T30K T_Dtct_Hou_A; Address T_Dtct_Hou_A 0xC82;
+TM 1 Hz AI_T30K CellOutT; Address CellOutT 0xC62;
+TM 1 Hz AI_T30K PmpMotT; Address PmpMotT 0xC82;
 TM 1 Hz AI16 CT_Z1_Mir_A; Address CT_Z1_Mir_A 0xC40;
 TM 1 Hz AI16 CT_Z2_Mir_A; Address CT_Z2_Mir_A 0xC04;
-TM 4 Hz AI_T1M250KU T_Cell_In_A; Address T_Cell_In_A 0xC22;
-TM 1 Hz AI_10SLM Flw_Out_A; Address Flw_Out_A 0xC66;
-TM 4 Hz AI_T1M250KU T_Cell_Out_A;Address T_Cell_Out_A 0xCA4;
+/* TM 4 Hz AI_T1M250KU T_Cell_In_A; Address T_Cell_In_A 0xC22; */
+/* TM 1 Hz AI_10SLM Flw_Out_A; Address Flw_Out_A 0xC66; */
+/* TM 4 Hz AI_T1M250KU T_Cell_Out_A;Address T_Cell_Out_A 0xCA4; */
 
 
 TM 1 Hz AO Z1_H_St; Address Z1_H_St 0x406;

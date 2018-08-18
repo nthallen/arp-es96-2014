@@ -13,56 +13,55 @@ TempCont {
   Z2: (Z2_HC_A_S,3) (Z2_H_St,7) (CT_Z2_Mir_A,7) V;
   Z5: (Z5_HC_In_S,3) (Z5_H_St,7) (CT_Inlet,7) V;
 }
+
 CellT {
   HBox { +-; Title: "Cell Temp"; -+ };
-  Inlet: (T_Cell_In_A,7) C;
   "1:" (T_A_1,7) C;
   "2:" (T_A_2,7) C;
   "3:" (T_A_3,7) C;
   "4:" (T_A_4,7) C; 
-  Outlet: (T_Cell_Out_A,7) C;
 }
+
 Dtct {
   HBox { +-; Title: "Detector"; -+ };
   "Raw I:" (Dtct_A_c,10) V;
-  Housing: (T_Dtct_Hou_A,7) C;
-  Detector: (T_Dtct_A,7) C;
+  Housing: (DetHT,7) C;
   adc_n_avg: (adc_n_avg,3);
   adc_err:  (adc_err,3);
 }
+
 LED {
   HBox { +-; Title: "LED"; -+ };
   "Raw I:" (Dtct_Src_A_c,10) V;
   Status: (LED_A_On_Off,3);
-  Housing: (T_LED_Hou_A,7) C;
   Dtct: (T_Dtct_Src_A,7) C;
-  LED: (T_LED_A,7) C;
+  LED: (LED_T,7) C;
 }
+
 Flow {
   HBox { +-; Title: "Flow"; -+ };
-  Cell_P: (P_A,7) Torr;
-  DACS_P: (DACS_P,7) Torr;
-  Pump: (Pump_On_Off_S,3);
+  Cell_P:  (P_A,7) Torr;
+  DACS_P:  (DACS_P,7) Torr;
+  IBlkT:   (IBlkT,7) C;
+  OPltT:   (OPltT,7) C;
+  CellP_T: (CellP_T,7) C;
+  CellOutT: (CellOutT,7) C;
+  Pump:    (Pump_On_Off_S,3);
+  PmpMotT: (PmpMotT,7) C;
   "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);
-  "Scb Vlv:" (Vlv_Scb_A_Open_Close_S,6);
+  "Scb Vlv:"   (Vlv_Scb_A_Open_Close_S,6);
 }
 
 Valves {
 # HBox { +-; Title: "Valves"; -+ };
   "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);
-# ""           (T_Vlv_UnScb_A,7) C;
   "Scb Vlv:" (Vlv_Scb_A_Open_Close_S,6);
-# ""         (T_Scb_Vlv_A,7) C;
 # "Scb FH:" (Scrub_FH_A_On_Off_S,3);
 # Scb: (T_Scb,7) C;
 }
 
 Rove {
   HBox { +-; Title: "Rove Temp"; -+ };
-  R1: (T_Rove_1,7) C;
-  R2: (T_Rove_2,7) C;
-  R3: (T_Rove_3,7) C;
-  R4: (T_Rove_4,7) C;
 }
 {
   HBox {[Dtct]; |; [LED]};
