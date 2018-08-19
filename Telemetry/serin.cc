@@ -153,6 +153,7 @@ serin_t::serin_t(int nQrows, int low_water, const char *path) :
       is_terminal = true;
     }
   }
+  nc = cp = 0;
 }
 
 static void pt_create( void *(*func)(void *), pthread_t *thread, void *arg ) {
