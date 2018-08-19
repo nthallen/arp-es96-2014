@@ -8,7 +8,10 @@
   Launch dccc dccc -f $TMBINDIR/dccc.dccc
   Launch DG/cmd O3col
   Launch cmd/server O3srvr
-  Launch - uplink_rcvr -P /dev/ser2
+#--- for test with direct connection:
+  Launch - uplink_rcvr -P /dev/ser2 -a 21 -B 1200
+#--- for operation through CIP/MaCaPs:
+# Launch - uplink_rcvr -P /dev/ser2 -B 2400
   Launch - lgr -N `mlf_find LOG`
   Launch - seroutext -b 2400
   Launch - tmdf
