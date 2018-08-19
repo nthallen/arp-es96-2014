@@ -2,18 +2,23 @@
 <include> "uplink_rcvr.h"
 <include> msg
 <follow> msg
+<include> cic
 
-<opts> "p:a:"
+<opts> "P:a:B:"
 <sort>
-	-p <port> serial port for uplink
+	-P <port> serial port for uplink
 	-a XX 2-digit hex instrument address: only for test
+	-B <baud> baud rate for receiving (match downlink)
 
 <switch>
-  case 'p':
+  case 'P':
     uplink_port = optarg;
     break;
   case 'a':
     uplink_addr = optarg;
+    break;
+  case 'B':
+    uplink_baud = atoi(optarg);
     break;
 
 <package> msghdr_default

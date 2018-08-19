@@ -3,6 +3,7 @@
 
 extern const char *uplink_port;
 extern const char *uplink_addr;
+extern int uplink_baud;
 
 #ifdef __cplusplus
 #include <SerSelector.h>
