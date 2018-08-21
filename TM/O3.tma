@@ -23,7 +23,7 @@ State Record {
    +1 > Set Zone 1 Set Point 1.3
    +1 > Set Zone 2 Set Point 1.3
    +1 > Command LED_A_On_Off On
-   +1 Validate Scrub_Start;
+   +1 Validate Scrub_Scrub;
   +60 { if (convert(PmpMotT) > 70. ||
             convert(Pmp1HeadT) > 70. ||
             convert(LED_T) > 65.) { Validate OverTemp; }}
@@ -37,7 +37,7 @@ State OverTemp {
    +1 > Command LED_A_On_Off Off
   +60 Hold Until (convert(PmpMotT) < 60 &&
                   convert(Pmp1HeadT) < 60 &&
-                  convert(LED_T < 55.));
+                  convert(LED_T) < 55.);
       Validate Record;
 }
 
@@ -162,7 +162,7 @@ State FlashHeat_On {
      +1 Validate FlashHeat_Done;
 }
 
-State FlashHead_Done {
+State FlashHeat_Done {
       > _Algo P4 3
       > Command Scrub_FH_A_On_Off Off
 }

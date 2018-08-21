@@ -2,7 +2,7 @@ TM typedef unsigned char UCHAR { text "%3u"; }
 TM typedef unsigned short UINT { text "%5u"; }
 TM typedef double VOLTS;
 TM typedef double CELCIUS;
-TM typedef double TORR;
+TM typedef double TORR { text "6.2lf"; }
 TM typedef double SLM;
 
 TM typedef signed short AI16 {

@@ -1,11 +1,11 @@
 SW_Variable: SWStat SW Status
-  SWS_SCRUB_START     1 Scrub Start: validate Scrub_Start; break;
+  SWS_SCRUB_START     1 Scrub Start: validate Scrub_Scrub; break;
   SWS_SCRUB_STOP      2 Scrub Stop: validate Scrub_Stop; break;
   SWS_RECORD          3 Record: validate Record; break;
   
   SWS_FLASH_HEAT_ON   20 Flash Heat On:  Validate FlashHeat_On; break;
-  SWS_FLASH_HEAT_OFF  21 Flash Heat Off: Validate FlashHead_Off; break;
-  SWS_FLASH_HEAT_DONE 22 Flash Heat Done: Validate FlashHead_Done; break;
+  SWS_FLASH_HEAT_OFF  21 Flash Heat Off: Validate FlashHeat_Off; break;
+  SWS_FLASH_HEAT_DONE 22 Flash Heat Done: Validate FlashHeat_Done; break;
   
   SWS_OFF_GROUND     30 Altitude Off Ground: using_swp = SWS_OFF_GROUND; break;
   SWS_STRATOSPHERE   31 Altitude Stratosphere: using_swp = SWS_STRATOSPHERE; break;

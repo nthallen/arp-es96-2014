@@ -47,13 +47,14 @@ O3col : -lsubbus
 O3srvr : -lsubbus
 O3disp : dstat.tmc adc_conv.tmc pwrmon_conv.tmc \
            /usr/local/share/huarp/flttime.tmc \
-           PTRH_conv.tmc HUSCE_CT.tmc algo_conv.tmc \
+           PTRH_conv.tmc HUSCE_CT.tmc \
            model_atmos.cc TM_lowpass.cc climb_rate.tmc \
            O3.tbl O3_2.tbl algo.tbl\
            /usr/local/share/oui/cic.oui
 O3rtgext : adc_conv.tmc pwrmon_conv.tmc PTRH_conv.tmc \
            HUSCE_CT.tmc rtg.tmc
-O3algo : model_atmos.cc TM_lowpass.cc climb_rate.tmc O3.tma O3.sws
+O3algo : PTRH_conv.tmc model_atmos.cc TM_lowpass.cc \
+          climb_rate.tmc O3.tma O3.sws
 rawext : raw.cdf
 
 doit : O3.doit
