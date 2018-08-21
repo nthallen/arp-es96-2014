@@ -2,16 +2,32 @@ State Init {
   > Telemetry Start
 }
 
+State Record {
+      > Command Pump_On_Off On
+   +1 > Set Zone 5 Set Point 1.9
+   +1 > Set Zone 1 Set Point 1.3
+   +1 > Set Zone 2 Set Point 1.3
+   +1 > Command LED_A_On_Off On
+   +1 Validate Scrub_Start;
+}
+
 State Shutdown {
      > command vlv_Scb_A_Open_Close close
      > command vlv_unScb_A_Open_Close close
-  +3 > quit
+  +1 > Set Zone 5 Set Point 1.0
+  +1 > Set Zone 1 Set Point 1.0
+  +1 > Set Zone 2 Set Point 1.0
+  +1 > Command Pump_On_Off Off
+  +1 > Command LED_A_On_Off Off
+  +10 > quit
 }
 
 Partition 
 State Scrub_Idle {
 }
+
 State Scrub_Start {
+  depending on (Shutdown) { Validate Scrub_Stop; }
   > command vlv_unScb_A_Open_Close open
   > command vlv_Scb_A_Open_Close open
   +15 > command vlv_Scb_A_Open_Close close

@@ -1,4 +1,5 @@
 SW_Variable: SWStat SW Status
   SWS_SCRUB_START     1 Scrub Start: validate Scrub_Start; break;
   SWS_SCRUB_STOP      2 Scrub Stop: validate Scrub_Stop; break;
+  SWS_RECORD          3 Record: validate Record; break;
   SWS_SHUTDOWN      255 Shutdown: validate Shutdown; break;
