@@ -1,9 +1,9 @@
 Algo {
   HBox { +-; Title: "Algo Status"; -+ };
-  {Main:  (AlgoP1,8)};
-  {Alt:   (AlgoP2,12)};
-  {Scrub: (AlgoP3,7)};
-  {FH:    (AlgoP4,14)};
+  Main:  HBox {(AlgoP1,8)};
+  Alt:   HBox {(AlgoP2,12)};
+  Scrub: HBox {(AlgoP3,7)};
+  FH:    HBox {(AlgoP4,14)};
 }
 
 Climb {

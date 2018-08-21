@@ -124,15 +124,15 @@ State Scrub_Idle {
 State Scrub_Scrub NoLog {
       depending on (Shutdown) { Validate Scrub_Stop; }
       > _Algo P3 2
-      > command vlv_unScb_A_Open_Close open
-      > command vlv_Scb_A_Open_Close open
+      > _command vlv_unScb_A_Open_Close open
+      > _command vlv_Scb_A_Open_Close open
    +8 Validate Scrub_Unscrub;
 }
 
 State Scrub_Unscrub NoLog {
       > _Algo P3 3
-      > command vlv_Scb_A_Open_Close close
-      > command vlv_unScb_A_Open_Close close
+      > _command vlv_Scb_A_Open_Close close
+      > _command vlv_unScb_A_Open_Close close
   +15 Validate Scrub_Scrub;
 }
 

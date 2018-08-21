@@ -26,7 +26,7 @@ TempCont {
   Z2:     (CT_Z2_Mir_A,7) (CT_Z2_Mir_AT,7);
   " set:" (Z2_H_St,7)     (Z2_H_StT,7);
   HBox{ "   "; -; "   " };
-  Z2:     (CT_Inlet,7)    (CT_InletT,7);
+  Z5:     (CT_Inlet,7)    (CT_InletT,7);
   " set:" (Z5_H_St,7)     (Z5_H_StT,7);
 }
 
@@ -34,9 +34,9 @@ Flow {
   HBox { +-; Title: "Flow"; -+ };
   Cell_P: (P_A,7) Torr;
   Pump:  (Pump_On_Off_S,3);
-  Motor: (PmpMotT) C;
-  Head1: (Pmp1HeadT,7) C;
-  Head2: (Pmp2HeadT,7) C;
+  Motor: (PmpMotT,6) C;
+  Head1: (Pmp1HeadT,6) C;
+  Head2: (Pmp2HeadT,6) C;
 }
 
 Valves {

@@ -10,6 +10,7 @@ ci_sendfcmd(2, "PhRTG Datum Cell_T %.2lf %.2lf %.2lf %.2lf %.2lf\n",
   dtime(), convert(T_A_1), convert(T_A_2), convert(T_A_3), convert(T_A_4));
 ci_sendfcmd(2, "PhRTG Datum Cell_P %.2lf %s\n", dtime(), text(P_A));
 ci_sendfcmd(2, "PhRTG Datum DACS_P %.2lf %s\n", dtime(), text(DACS_P));
+ci_sendfcmd(2, "PhRTG Datum LED_T %.2lf %s\n", dtime(), text(LED_T));
 
 
 ci_sendfcmd(2, "PhRTG Datum Z1_H %.2lf %.2lf %.2lf\n", dtime(),
