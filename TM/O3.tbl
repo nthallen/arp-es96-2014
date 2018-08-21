@@ -30,7 +30,7 @@ LED {
   HBox { +-; Title: "LED"; -+ };
 # "Raw I:" (Dtct_Src_A_c,10) V;
   Status:  (LED_A_On_Off,3);
-  Dtct:    (T_Dtct_Src_A,7) C;
+# Dtct:    (T_Dtct_Src_A,7) C;
   LED:     (LED_T,7) C;
 }
 

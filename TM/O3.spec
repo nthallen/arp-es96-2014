@@ -8,6 +8,7 @@ tmcbase = /usr/local/share/huarp/vl_temp.tmc
 tmcbase = /usr/local/share/huarp/ebx11_temp.tmc
 tmcbase = PTRH.tmc
 tmcbase = /usr/local/share/huarp/ptrhm.cc
+tmcbase = algo_conv.tmc
 
 cmdbase = /usr/local/share/huarp/root.cmd
 cmdbase = /usr/local/share/huarp/getcon.cmd
@@ -33,6 +34,7 @@ genuibase = pwrmon.genui
 genuibase = PTRH.genui
 extbase = adc_conv.tmc
 extbase = PTRH_conv.tmc
+extbase = model_atmos.cc TM_lowpass.cc climb_rate.tmc
 
 DISTRIB = SerIn/o3sisrvr SerIn/o3siclt SerIn/o3sicltnc
 DISTRIB = ../Uplink/uplink ../Uplink/uplink_rcvr
@@ -45,12 +47,13 @@ O3col : -lsubbus
 O3srvr : -lsubbus
 O3disp : dstat.tmc adc_conv.tmc pwrmon_conv.tmc \
            /usr/local/share/huarp/flttime.tmc \
-           PTRH_conv.tmc HUSCE_CT.tmc \
-           O3.tbl O3_2.tbl \
+           PTRH_conv.tmc HUSCE_CT.tmc algo_conv.tmc \
+           model_atmos.cc TM_lowpass.cc climb_rate.tmc \
+           O3.tbl O3_2.tbl algo.tbl\
            /usr/local/share/oui/cic.oui
 O3rtgext : adc_conv.tmc pwrmon_conv.tmc PTRH_conv.tmc \
            HUSCE_CT.tmc rtg.tmc
-O3algo : O3.tma O3.sws
+O3algo : model_atmos.cc TM_lowpass.cc climb_rate.tmc O3.tma O3.sws
 rawext : raw.cdf
 
 doit : O3.doit
@@ -93,6 +96,8 @@ clean-dist : clean-Telemetry
 clean-Telemetry :
 	cd ../Telemetry && make clean
 
+model_atmos.o : model_atmos.h
+TM_lowpass.o : TM_lowpass.h
 
 distribution : distribution-serin
 distribution-serin :

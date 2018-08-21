@@ -1,0 +1,50 @@
+TM typedef Algo_t AlgoP1_t { text "%8d" AlgoP1_text(); }
+%{
+  const char *AlgoP1_text(AlgoP1_t AlgoP1) {
+    switch (AlgoP1) {
+      case 1:  return "Init    ";
+      case 2:  return "Record  ";
+      case 3:  return "OverTemp";
+      case 4:  return "Shutdown";
+      default: return "--------";
+    }
+  }
+%}
+
+TM typedef Algo_t AlgoP2_t { text "%12d" AlgoP2_text(); }
+%{
+  const char *AlgoP2_text(AlgoP2_t AlgoP2) {
+    switch (AlgoP2) {
+      case 1:  return "ON_GROUND   ";
+      case 2:  return "OFF_GROUND  ";
+      case 3:  return "STRATOSPHERE";
+      case 4:  return "TERMINATE   ";
+      default: return "------------";
+    }
+  }
+%}
+
+TM typedef Algo_t AlgoP3_t { text "%7d" AlgoP3_text(); }
+%{
+  const char *AlgoP3_text(AlgoP3_t AlgoP3) {
+    switch (AlgoP3) {
+      case 1:  return "Idle   ";
+      case 2:  return "Scrub  ";
+      case 3:  return "Unscrub";
+      case 4:  return "Stop   ";
+      default: return "-------";
+    }
+  }
+%}
+
+TM typedef Algo_t AlgoP4_t { text "%14d" AlgoP4_text(); }
+%{
+  const char *AlgoP4_text(AlgoP4_t AlgoP4) {
+    switch (AlgoP4) {
+      case 1:  return "FlashHeat_Off ";
+      case 2:  return "FlashHeat_On  ";
+      case 3:  return "FlashHeat_Done";
+      default: return "--------------";
+    }
+  }
+%}

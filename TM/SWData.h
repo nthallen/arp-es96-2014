@@ -9,6 +9,7 @@ extern SWData_t SWData;
 
 #define SWS_SCRUB_START 1
 #define SWS_SCRUB_STOP 2
+#define SWS_RECORD 3
 #define SWS_SHUTDOWN 255
 
 #endif
