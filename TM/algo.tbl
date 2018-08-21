@@ -1,0 +1,28 @@
+Algo {
+  HBox { +-; Title: "Algo Status"; -+ };
+  {Main:  (AlgoP1,8)};
+  {Alt:   (AlgoP2,12)};
+  {Scrub: (AlgoP3,7)};
+  {FH:    (AlgoP4,14)};
+}
+
+Climb {
+  HBox { +-; Title: "Altitude"; -+ };
+  Alt:   (alt_km,6)      km;
+  Climb: (climb_mps,6)  "m/s";
+  -;
+  Alt:   (alt_ft,7)      ft;
+  Climb: (climb_fps,6)   "ft/s";
+}
+
+Status {
+  HBox { +-; Title: "Status"; -+ };
+  SWStat: (SWStat,3);
+  { (flttime,9) };
+  MFCtr: (MFCtr,5);
+}
+
+{ [Algo];
+  [Climb];
+  [Status];
+}

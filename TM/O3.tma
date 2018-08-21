@@ -1,41 +1,168 @@
+#-------------------------------------------
+# Partition 1: Main Line
+#-------------------------------------------
+
 State Init {
-  > Telemetry Start
+      > Telemetry Start
+      > _Algo P1 1
+   +1 Validate Scrub_Stop;
+   +1 > Set Zone 5 Set Point 1.0
+   +1 > Set Zone 1 Set Point 1.0
+   +1 > Set Zone 2 Set Point 1.0
+   +1 > Command Pump_On_Off Off
+   +1 > Command LED_A_On_Off Off
+      depending on (OFF_GROUND) { Validate Record; }
+      depending on (STRATOSPHERE) { Validate Record; }
 }
 
 State Record {
+      depending on (TERMINATE) { Validate Shutdown; }
+      > _Algo P1 2
       > Command Pump_On_Off On
    +1 > Set Zone 5 Set Point 1.9
    +1 > Set Zone 1 Set Point 1.3
    +1 > Set Zone 2 Set Point 1.3
    +1 > Command LED_A_On_Off On
    +1 Validate Scrub_Start;
+  +60 { if (convert(PmpMotT) > 70. ||
+            convert(Pmp1HeadT) > 70. ||
+            convert(LED_T) > 65.) { Validate OverTemp; }}
+}
+
+State OverTemp {
+      depending on (TERMINATE) { Validate Shutdown; }
+      > _Algo P1 3
+      Validate Scrub_Stop;
+   +1 > Command Pump_On_Off Off
+   +1 > Command LED_A_On_Off Off
+  +60 Hold Until (convert(PmpMotT) < 60 &&
+                  convert(Pmp1HeadT) < 60 &&
+                  convert(LED_T < 55.));
+      Validate Record;
 }
 
 State Shutdown {
-     > command vlv_Scb_A_Open_Close close
-     > command vlv_unScb_A_Open_Close close
-  +1 > Set Zone 5 Set Point 1.0
-  +1 > Set Zone 1 Set Point 1.0
-  +1 > Set Zone 2 Set Point 1.0
-  +1 > Command Pump_On_Off Off
-  +1 > Command LED_A_On_Off Off
-  +10 > quit
+      > _Algo P1 4
+      Validate Scrub_Stop;
+   +1 > Set Zone 5 Set Point 1.0
+   +1 > Set Zone 1 Set Point 1.0
+   +1 > Set Zone 2 Set Point 1.0
+   +1 > Command Pump_On_Off Off
+   +1 > Command LED_A_On_Off Off
+      Hold Until (SWStat == SWS_TIME_WARP) or 2:00;
+   +1 > quit
 }
 
-Partition 
+#-------------------------------------------
+# Partition 2: Altitude
+#-------------------------------------------
+
+Partition
+
+# This partition converts pressure (altitude) into states 
+# (ON_GROUND, OFF_GROUND).
+# The threshold pressures each have two values - one for 
+# the flight up and the other for the flight down.
+# This provides hysteresis and prevents bouncing.  
+# We are effectively using two switches: 
+# 	ON_GROUND and IN_AIR (BELOW CLOUDS = ABOVE CLOUDS)
+# REF: 650 torr ~5000 ft
+
+%{ /* Altitude definitions in ft */
+    double A_ground_up = 15000.;
+    double A_strat_up = 50000.;
+    double A_trop_dn = 40000.;
+    int using_swp = 0;
+%}
+
+State ON_GROUND {
+  > _Algo P2 1
+  { using_swp = 0; }
+  { if (using_swp ||
+        alt_ft > A_ground_up)
+      Validate OFF_GROUND;
+  }
+}
+
+State OFF_GROUND {
+  > _Algo P2 2
+
+  # Possible early termination check here?
+  +2 # short delay to allow state to register
+  { if ((using_swp == SWS_STRATOSPHERE) ||
+        (!using_swp &&
+         alt_ft > A_strat_up)) {
+      Validate STRATOSPHERE;
+    }
+  }
+}
+
+State STRATOSPHERE {
+  > _Algo P2 3
+  { if ((using_swp == SWS_TERMINATE) ||
+        (!using_swp &&
+          (alt_ft < A_trop_dn))) {
+      Validate TERMINATE;
+    }
+  }
+}
+
+State TERMINATE {
+  > _Algo P2 4
+}
+
+#-------------------------------------------
+# Partition 3: Scrub Chop Cycles
+#-------------------------------------------
+
+Partition
+
 State Scrub_Idle {
+  > _Algo P3 1
 }
 
-State Scrub_Start {
-  depending on (Shutdown) { Validate Scrub_Stop; }
-  > command vlv_unScb_A_Open_Close open
-  > command vlv_Scb_A_Open_Close open
-  +15 > command vlv_Scb_A_Open_Close close
-      > command vlv_unScb_A_Open_Close close
-  +8  validate Scrub_Start;
+State Scrub_Scrub NoLog {
+      depending on (Shutdown) { Validate Scrub_Stop; }
+      > _Algo P3 2
+      > command vlv_unScb_A_Open_Close open
+      > command vlv_Scb_A_Open_Close open
+   +8 Validate Scrub_Unscrub;
 }
+
+State Scrub_Unscrub NoLog {
+      > _Algo P3 3
+      > command vlv_Scb_A_Open_Close close
+      > command vlv_unScb_A_Open_Close close
+  +15 Validate Scrub_Scrub;
+}
+
 State Scrub_Stop {
+  > _Algo P3 4
   > command vlv_Scb_A_Open_Close close
   > command vlv_unScb_A_Open_Close close
-  validate Scrub_Idle;
+  Validate Scrub_Idle;
+}
+
+#-------------------------------------------
+# Partition 4: Flash Heat
+#-------------------------------------------
+
+Partition
+
+State FlashHeat_Off {
+      > _Algo P4 1
+      > Command Scrub_FH_A_On_Off Off
+      depending on (STRATOSPHERE) { Validate FlashHeat_On; }
+}
+
+State FlashHeat_On {
+        > _Algo P4 2
+        > Command Scrub_FH_A_On_Off On
+        Hold Until (SWStat == SWS_FLASH_HEAT_OFF) or 4:00;
+     +1 Validate FlashHeat_Done;
+}
+
+State FlashHead_Done {
+      > _Algo P4 3
+      > Command Scrub_FH_A_On_Off Off
 }
