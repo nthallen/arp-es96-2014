@@ -25,7 +25,7 @@ void set_serout_baud(int baudrate) {
 serout_data_client::serout_data_client(int bufsize_in, int fast,
       int non_block) :
       data_client(bufsize_in, fast, non_block) {
-  ser_fd = open( tm_port, O_WRONLY|O_CREAT, 0664 );
+  ser_fd = open( tm_port, O_WRONLY|O_CREAT|O_NONBLOCK, 0664 );
   if ( ser_fd < 0 ) {
     nl_error( 3,
       "Error %d opening telemetry port %s: %s", errno, tm_port,
@@ -59,6 +59,7 @@ serout_data_client::serout_data_client(int bufsize_in, int fast,
   row_offset = row_len;
   Synch = 0;
   rows_skipped = 0;
+  last_mfc = 0;
 }
 
 void serout_data_client::init_synch(uint16_t synchval) {
@@ -81,6 +82,10 @@ void serout_data_client::send_row(unsigned short MFCtr,
     nl_error(1, "%d rows skipped", rows_skipped);
     rows_skipped = 0;
   }
+  if (MFCtr >= last_mfc + 10 || MFCtr < last_mfc) {
+    nl_error(-2, "Sending MFCtr:%u", MFCtr);
+    last_mfc = MFCtr;
+  }
   memcpy(&(row_buf->row[0]), &MFCtr, 2);
   memcpy(&(row_buf->row[2]), raw, tm_info.tm.nbminf-4);
   memcpy(&(row_buf->row[row_len-2]), &Synch, 2);
@@ -96,7 +101,9 @@ int serout_data_client::flush_row() {
     int nb = row_len - row_offset;
     int rv = write(ser_fd, &row_buf->row[row_offset], nb);
     if (rv < 0) {
-      nl_error(3, "Error %d from write", errno);
+      if (errno == EAGAIN)
+        return 1;
+      nl_error(3, "Error %d from write (EAGAIN = %d)", errno, EAGAIN);
     } else if (rv < nb) {
       row_offset += rv;
       return 1;
