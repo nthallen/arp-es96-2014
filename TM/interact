@@ -9,10 +9,10 @@
   Launch DG/cmd O3col
   Launch cmd/server O3srvr
 #--- for test with direct connection:
-# Launch - uplink_rcvr -P /dev/ser2 -a 21 -B 1200
+# Launch - uplink_rcvr -P /dev/ser3 -a 21 -B 1200
 #--- for operation through CIP/MaCaPs:
-  Launch - uplink_rcvr -P /dev/ser2 -B 2400
+  Launch - uplink_rcvr -P /dev/ser3 -B 2400
   Launch - lgr -N `mlf_find LOG`
-  Launch - seroutext -b 2400
+  Launch - seroutext -d /dev/ser2 -b 2400
   Launch - tmdf
   Launch - O3algo -v
