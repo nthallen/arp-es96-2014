@@ -74,7 +74,7 @@ void serout_data_client::init_synch(uint16_t synchval) {
 void serout_data_client::send_row(unsigned short MFCtr,
                                   const unsigned char *raw) {
   if (flush_row()) {
-    ++rows_skipped
+    ++rows_skipped;
     return; // abandon data
   }
   if (rows_skipped) {
