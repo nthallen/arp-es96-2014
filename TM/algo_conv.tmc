@@ -1,3 +1,5 @@
+TM typedef unsigned char Algo_t { text "%3d"; }
+
 TM typedef Algo_t AlgoP1_t { text "%8d" AlgoP1_text(); }
 %{
   const char *AlgoP1_text(AlgoP1_t AlgoP1) {

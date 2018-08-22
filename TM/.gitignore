@@ -12,12 +12,16 @@ O3srvroui.c
 O3srvroui.o
 O3tbl.tmc
 O3_2tbl.tmc
+algotbl.tmc
 O3disp.cc
 O3dispoui.c
 O3dispoui.o
 O3disp.o
+model_atmos.o
+TM_lowpass.o
 O3tblnc.tmc
 O3_2tblnc.tmc
+algotblnc.tmc
 O3dispnc.cc
 O3dispncoui.c
 O3dispncoui.o
@@ -59,8 +63,10 @@ O3engextoui.o
 O3engext.o
 O3tbl.tmc.dep
 O3_2tbl.tmc.dep
+algotbl.tmc.dep
 O3tblnc.tmc.dep
 O3_2tblnc.tmc.dep
+algotblnc.tmc.dep
 *.err
 O3col
 O3srvr

@@ -19,7 +19,6 @@
 #define PmpPltT_Address 0xCA2
 #define T_Scb_Address 0xC20
 #define CT_Inlet_Address 0xC80
-#define T_Dtct_Src_A_Address 0xC60
 #define CellP_T_Address 0xC42
 #define T_A_4_Address 0xC84
 #define T_A_3_Address 0xC64

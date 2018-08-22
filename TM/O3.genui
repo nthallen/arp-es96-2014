@@ -56,5 +56,5 @@ ROWS 10
   1 AlgoP3  Ozone:Algo Scrub    %.0lf
   1 AlgoP4  Ozone:Algo FH       %.0lf
   1 alt_ft  Ozone:Algo ft
-  1 Amb_P_f Ozone:PTRH P
+  1 Amb_P_f Ozone:PTRH P        %.2lf
   1 climb_fps Ozone:Algo fps

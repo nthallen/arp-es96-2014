@@ -1,3 +1,7 @@
 TM "Receive" SWData 0;
 
 TM 1 Hz UCHAR SWStat; collect SWStat = SWData.SWStat;
+TM 1 Hz AlgoP1_t AlgoP1; collect AlgoP1 = SWData.AlgoP1;
+TM 1 Hz AlgoP2_t AlgoP2; collect AlgoP2 = SWData.AlgoP2;
+TM 1 Hz AlgoP3_t AlgoP3; collect AlgoP3 = SWData.AlgoP3;
+TM 1 Hz AlgoP4_t AlgoP4; collect AlgoP4 = SWData.AlgoP4;

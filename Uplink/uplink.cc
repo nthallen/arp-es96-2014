@@ -12,7 +12,7 @@ const char *uplink_addr0, *uplink_addr1;
 
 UplinkCmd::UplinkCmd(UplinkSer *US, const char *addr0, const char *addr1)
             : Cmd_Selectee("cmd/uplink", 80), US(US) {
-  addr0 = addr1 = 0;
+  this->addr0 = this->addr1 = 0;
 
   if ((!isxdigit(addr0[0])) ||
       (!isxdigit(addr0[1])) ||
