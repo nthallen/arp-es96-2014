@@ -37,6 +37,7 @@ class serout_data_client : public data_client {
     row_buf_t *row_buf;
     uint16_t row_len, row_offset;
     uint16_t Synch, scan_synch;
+    int rows_skipped;
     
     int flush_row();
     void send_row(uint16_t MFCtr, const unsigned char *raw);

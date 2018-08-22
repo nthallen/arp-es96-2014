@@ -58,6 +58,7 @@ serout_data_client::serout_data_client(int bufsize_in, int fast,
   row_buf = (row_buf_t *)nl_new_memory(row_len);
   row_offset = row_len;
   Synch = 0;
+  rows_skipped = 0;
 }
 
 void serout_data_client::init_synch(uint16_t synchval) {
@@ -72,7 +73,14 @@ void serout_data_client::init_synch(uint16_t synchval) {
  */
 void serout_data_client::send_row(unsigned short MFCtr,
                                   const unsigned char *raw) {
-  if (flush_row()) return; // abandon data
+  if (flush_row()) {
+    ++rows_skipped
+    return; // abandon data
+  }
+  if (rows_skipped) {
+    nl_error(1, "%d rows skipped", rows_skipped);
+    rows_skipped = 0;
+  }
   memcpy(&(row_buf->row[0]), &MFCtr, 2);
   memcpy(&(row_buf->row[2]), raw, tm_info.tm.nbminf-4);
   memcpy(&(row_buf->row[row_len-2]), &Synch, 2);

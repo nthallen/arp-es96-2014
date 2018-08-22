@@ -273,6 +273,7 @@ void *serin_t::input_thread() {
 
   fd_set readfds, writefds, exceptfds;
   struct timeval tv;
+  int to_count = 0;
   while (!quit) {
     FD_ZERO(&readfds);
     FD_ZERO(&writefds);
@@ -284,7 +285,8 @@ void *serin_t::input_thread() {
     int rc = select(width, &readfds, &writefds, &exceptfds, &tv);
     // rc==0 means timeout, which we ignore
     if ( rc == 0 ) {
-      nl_error(MSG, "Timeout reading from ser_fd");
+      if (++to_count == 2)
+        nl_error(MSG, "Timeout reading from ser_fd");
     } else if ( rc < 0 ) {
       if ( errno != EINTR ) {
         nl_error(MSG_FATAL,
@@ -293,6 +295,11 @@ void *serin_t::input_thread() {
     } else if (rc > 0) {
       if (FD_ISSET(ser_fd, &readfds)) {
         process_serin();
+        if (to_count) {
+          nl_error(MSG, "Recovered after %d timeout%s",
+                   to_count, to_count > 1 ? "s" : "");
+          to_count = 0;
+        }
       }
     }
   }
