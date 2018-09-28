@@ -33,6 +33,7 @@ f = ne_dialg(f, 'add', 1, 0, 'pO3opdacscpu', 'CPU' );
 f = ne_dialg(f, 'add', 1, 0, 'pO3opdacsd', 'Disk' );
 f = ne_dialg(f, 'add', 1, 0, 'pO3opdacscput', 'CPU T' );
 f = ne_dialg(f, 'add', 1, 0, 'pO3opdacssws', 'SW Stat' );
+f = ne_dialg(f, 'add', 1, 0, 'pO3opdacsmfc', 'MF Ctr' );
 f = ne_dialg(f, 'newcol');
 f = ne_dialg(f, 'add', 0, 1, 'gO3oa', 'Algo' );
 f = ne_dialg(f, 'add', 1, 0, 'pO3oam', 'Main' );

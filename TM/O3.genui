@@ -50,6 +50,7 @@ ROWS 10
   1 vl_cpuT Ozone:PDACS CPU_T
   1 vl_bdT  Ozone:PDACS CPU_T
   1 SWStat Ozone:PDACS SWStat
+  1 MFCtr  Ozone:PDACS MFCtr
   
   1 AlgoP1  Ozone:Algo Main     %.0lf
   1 AlgoP2  Ozone:Algo Altitude %.0lf
