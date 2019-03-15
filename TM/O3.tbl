@@ -28,7 +28,7 @@ Dtct {
 
 LED {
   HBox { +-; Title: "LED"; -+ };
-# "Raw I:" (Dtct_Src_A_c,10) V;
+  "Raw I:" (Dtct_Src_A_c,10) V;
   Status:  (LED_A_On_Off,3);
 # Dtct:    (T_Dtct_Src_A,7) C;
   LED:     (LED_T,7) C;
@@ -36,7 +36,7 @@ LED {
 
 Flow {
   HBox { +-; Title: "Flow"; -+ };
-  Cell_P:  (P_A,7) Torr;
+  Cell_P:  (P_A,8) Torr;
   DACS_P:  (DACS_P,7) Torr;
   Pump:    (Pump_On_Off_S,3);
   "UnScb Vlv:" (Vlv_UnScb_A_Open_Close_S,6);

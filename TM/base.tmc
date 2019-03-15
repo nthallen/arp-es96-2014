@@ -20,12 +20,12 @@ TM typedef AI16 AI_T1M250KU
   { text "%6.2lf"; convert CELCIUS; }
   /* Calibration in T1M250KU.tmc */
 
-TM typedef AI16 P500Torr
-  {text "%7.3lf"; convert TORR;}
+TM typedef AI16 P1000Torr
+  {text "%8.3lf"; convert TORR;}
 
-Calibration (P500Torr, TORR) {
+Calibration (P1000Torr, TORR) {
   0, 0,
-  32424, 500
+  32424, 1000
 }
 
 TM typedef AI16 AI16_5V { text "%7.4lf"; convert VOLTS; }
@@ -94,7 +94,7 @@ TM 1 Hz AI_T30K DetHT; Address DetHT 0xCC0;
 TM 1 Hz AI_T30K LED_T; Address LED_T 0xCE0;
 TM 1 Hz AI_T30K IBlkT; Address IBlkT 0xC02;
 TM 1 Hz AI_T30K OPltT; Address OPltT 0xCC2;
-TM 4 Hz P500Torr P_A; Address P_A 0xCE4;
+TM 4 Hz P1000Torr P_A; Address P_A 0xCE4;
 TM 1 Hz AI_T30K CellOutT; Address CellOutT 0xC62;
 TM 1 Hz AI_T30K PmpMotT; Address PmpMotT 0xC82;
 TM 1 Hz AI16 CT_Z1_Mir_A; Address CT_Z1_Mir_A 0xC40;
